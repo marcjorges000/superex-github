@@ -1,0 +1,1541 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en-US">
+ <head>
+  <base href="https://zsecurity.org/blackeye/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="profile" href="https://gmpg.org/xfn/11">
+  <link rel="pingback" href="https://zsecurity.org/xmlrpc.php">
+  <title>BlackEye – Creating a Phishing Page – zSecurity</title>
+  <meta name="robots" content="max-image-preview:large">
+  <link rel="dns-prefetch" href="//www.google.com">
+  <link rel="dns-prefetch" href="//s.w.org">
+  <link href="https://fonts.gstatic.com" crossorigin rel="preconnect">
+  <link rel="alternate" type="application/rss+xml" title="zSecurity » Feed" href="https://zsecurity.org/feed/">
+  <link rel="alternate" type="application/rss+xml" title="zSecurity » Comments Feed" href="https://zsecurity.org/comments/feed/">
+  <link rel="alternate" type="application/rss+xml" title="zSecurity » BlackEye – Creating a Phishing Page Comments Feed" href="https://zsecurity.org/blackeye/feed/">
+  <link rel="stylesheet" href="https://zsecurity.org/wp-content/cache/minify/d3333.css" media="all">
+  <style id="wp-block-library-theme-inline-css">.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{padding:.5em;border:1px solid;word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}</style>
+  <link rel="stylesheet" href="https://zsecurity.org/wp-content/cache/minify/3c419.css" media="all">
+  <style id="global-styles-inline-css">/*<![CDATA[*/body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--primary: #E54242;--wp--preset--color--title: #333;--wp--preset--color--sub-title: #999;--wp--preset--color--border-input: #ddd;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 28px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--normal: 15px;--wp--preset--font-size--huge: 36px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}/*]]>*/</style>
+  <link rel="stylesheet" href="https://zsecurity.org/wp-content/cache/minify/6df52.css" media="all">
+  <link rel="stylesheet" id="pmpro_print-css" href="https://zsecurity.org/wp-content/plugins/paid-memberships-pro/css/print.css" type="text/css" media="print">
+  <style id="woocommerce-inline-inline-css">.woocommerce form .form-row .required { visibility: visible; }</style>
+  <link rel="stylesheet" href="https://zsecurity.org/wp-content/cache/minify/125be.css" media="all">
+  <style id="moove_gdpr_frontend-inline-css">#moove_gdpr_cookie_modal,#moove_gdpr_cookie_info_bar,.gdpr_cookie_settings_shortcode_content{font-family:Nunito,sans-serif}#moove_gdpr_save_popup_settings_button{background-color:#373737;color:#fff}#moove_gdpr_save_popup_settings_button:hover{background-color:#000}#moove_gdpr_cookie_info_bar .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a.mgbutton,#moove_gdpr_cookie_info_bar .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button.mgbutton{background-color:#e54242}#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-footer-content .moove-gdpr-button-holder a.mgbutton,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-footer-content .moove-gdpr-button-holder button.mgbutton,.gdpr_cookie_settings_shortcode_content .gdpr-shr-button.button-green{background-color:#e54242;border-color:#e54242}#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-footer-content .moove-gdpr-button-holder a.mgbutton:hover,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-footer-content .moove-gdpr-button-holder button.mgbutton:hover,.gdpr_cookie_settings_shortcode_content .gdpr-shr-button.button-green:hover{background-color:#fff;color:#e54242}#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-close i,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-close span.gdpr-icon{background-color:#e54242;border:1px solid #e54242}#moove_gdpr_cookie_info_bar span.change-settings-button.focus-g,#moove_gdpr_cookie_info_bar span.change-settings-button:focus{-webkit-box-shadow:0 0 1px 3px #e54242;-moz-box-shadow:0 0 1px 3px #e54242;box-shadow:0 0 1px 3px #e54242}#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-close i:hover,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-close span.gdpr-icon:hover,#moove_gdpr_cookie_info_bar span[data-href]>u.change-settings-button{color:#e54242}#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li.menu-item-selected a span.gdpr-icon,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li.menu-item-selected button span.gdpr-icon{color:inherit}#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li a span.gdpr-icon,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li button span.gdpr-icon{color:inherit}#moove_gdpr_cookie_modal .gdpr-acc-link{line-height:0;font-size:0;color:transparent;position:absolute}#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-close:hover i,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li a,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li button,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li button i,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li a i,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-tab-main .moove-gdpr-tab-main-content a:hover,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a.mgbutton:hover,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button.mgbutton:hover,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a:hover,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button:hover,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content span.change-settings-button:hover,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content u.change-settings-button:hover,#moove_gdpr_cookie_info_bar span[data-href]>u.change-settings-button,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a.mgbutton.focus-g,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button.mgbutton.focus-g,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a.focus-g,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button.focus-g,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a.mgbutton:focus,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button.mgbutton:focus,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a:focus,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button:focus,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content span.change-settings-button.focus-g,span.change-settings-button:focus,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content u.change-settings-button.focus-g,#moove_gdpr_cookie_info_bar.moove-gdpr-dark-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content u.change-settings-button:focus{color:#e54242}#moove_gdpr_cookie_modal.gdpr_lightbox-hide{display:none}#moove_gdpr_cookie_info_bar .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a.mgbutton,#moove_gdpr_cookie_info_bar .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button.mgbutton,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-footer-content .moove-gdpr-button-holder a.mgbutton,#moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-footer-content .moove-gdpr-button-holder button.mgbutton,.gdpr-shr-button,#moove_gdpr_cookie_info_bar .moove-gdpr-infobar-close-btn{border-radius:0}</style>
+  <link rel="stylesheet" href="https://zsecurity.org/wp-content/cache/minify/eac8e.css" media="all">
+  <style id="thim-style-inline-css">/*<![CDATA[*/:root{ --thim-body-primary-color: #E54242;--thim-body-secondary-color:#4caf50;--thim-button-text-color:#FFFFFF;--thim-button-hover-color:#C60000;--thim-footer-font-title-font-size:14px;--thim-footer-font-title-line-height:40px;--thim-footer-font-title-text-transform:uppercase;--thim-footer-font-title-font-weight:700;--thim-footer-font-size:;--thim-main-menu-font-weight:600;}/*]]>*/</style>
+  <link rel="stylesheet" href="https://zsecurity.org/wp-content/cache/minify/4e001.css" media="all"> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/818c0.js"></script> 
+  <script src="https://www.google.com/recaptcha/api.js" id="usp_recaptcha-js"></script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/221f4.js"></script> 
+  <script id="usp_core-js-before">var usp_custom_field = "usp_custom_field"; var usp_custom_checkbox = ""; var usp_case_sensitivity = "false"; var usp_challenge_response = "2"; var usp_min_images = 0; var usp_max_images = 4; var usp_parsley_error = "Incorrect response."; var usp_multiple_cats = 0; var usp_existing_tags = 0; var usp_recaptcha_disp = "show"; var usp_recaptcha_vers = 2; var usp_recaptcha_key = "6LcLmD4UAAAAAL8_c3WJxOCt8yp6eYD5Y6dzFiC1";</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/e9828.js"></script> 
+  <link rel="https://api.w.org/" href="https://zsecurity.org/wp-json/">
+  <link rel="alternate" type="application/json" href="https://zsecurity.org/wp-json/wp/v2/posts/60908">
+  <meta name="generator" content="WordPress 6.0.3">
+  <meta name="generator" content="WooCommerce 6.5.1">
+  <link rel="canonical" href="https://zsecurity.org/blackeye/">
+  <link rel="shortlink" href="https://zsecurity.org/?p=60908">
+  <link rel="alternate" type="application/json+oembed" href="https://zsecurity.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fzsecurity.org%2Fblackeye%2F">
+  <link rel="alternate" type="text/xml+oembed" href="https://zsecurity.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fzsecurity.org%2Fblackeye%2F&amp;format=xml">
+  <style>.has-post-thumbnail img.wp-post-image, 
+          .attachment-twentyseventeen-featured-image.wp-post-image { display: none !important; }</style>
+  <style id="learn-press-custom-css">/*<![CDATA[*/:root {
+				--lp-primary-color: #e54242;
+				--lp-secondary-color: #ffffff;
+			}/*]]>*/</style>
+  <meta name="google-site-verification" content="I8zeYTKATX2C7zvzzt0Egooey_VmGlnbvjY8SJLdtdo">
+  <meta name="google-site-verification" content="Y0gWnvX9TAweoCyuffOvBIom7_SLbebwD88VdMR7dAU">
+  <meta name="facebook-domain-verification" content="0wxdcjqx47hapejdwvn3f9y4ym75i5"> 
+  <noscript>
+   <style>.woocommerce-product-gallery{ opacity: 1 !important; }</style>
+  </noscript> 
+  <script>function tc_insert_internal_css(css) {
+                    var tc_style = document.createElement("style");
+                    tc_style.type = "text/css";
+                    tc_style.setAttribute('data-type', 'tc-internal-css');
+                    var tc_style_content = document.createTextNode(css);
+                    tc_style.appendChild(tc_style_content);
+                    document.head.appendChild(tc_style);
+                }</script> 
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+					n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+					t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+					document,'script','https://connect.facebook.net/en_US/fbevents.js');</script> 
+  <script>fbq('init', '638219583186540', {}, {
+    "agent": "woocommerce-6.5.1-2.6.25"
+});
+
+				fbq( 'track', 'PageView', {
+    "source": "woocommerce",
+    "version": "6.5.1",
+    "pluginVersion": "2.6.25"
+} );
+
+				document.addEventListener( 'DOMContentLoaded', function() {
+					jQuery && jQuery( function( $ ) {
+						// Insert placeholder for events injected when a product is added to the cart through AJAX.
+						$( document.body ).append( '<div class=\"wc-facebook-pixel-event-placeholder\"></div>' );
+					} );
+				}, false );</script> 
+  <link rel="icon" href="https://zsecurity.org/wp-content/uploads/2017/11/cropped-z-icon-32x32.png" sizes="32x32">
+  <link rel="icon" href="https://zsecurity.org/wp-content/uploads/2017/11/cropped-z-icon-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="https://zsecurity.org/wp-content/uploads/2017/11/cropped-z-icon-180x180.png">
+  <meta name="msapplication-TileImage" content="https://zsecurity.org/wp-content/uploads/2017/11/cropped-z-icon-270x270.png">
+  <style id="pt-cv-custom-style-d5e850btu5">.cvplbd {color:#fff}
+.cvplbd:hover {color: #e54242}
+.pt-cv-title {text-align: center;}</style> 
+  <script>var woocs_is_mobile = 0;
+        var woocs_special_ajax_mode = 0;
+        var woocs_drop_down_view = "no";
+        var woocs_current_currency = {"name":"USD","rate":1,"symbol":"&#36;","position":"left","is_etalon":1,"hide_cents":0,"hide_on_front":0,"rate_plus":"","decimals":2,"separators":"0","description":"USA dollar","flag":"https:\/\/zsecurity.org\/wp-content\/plugins\/woocommerce-currency-switcher\/img\/no_flag.png"};
+        var woocs_default_currency = {"name":"USD","rate":1,"symbol":"&#36;","position":"left","is_etalon":1,"hide_cents":0,"hide_on_front":0,"rate_plus":"","decimals":2,"separators":"0","description":"USA dollar","flag":"https:\/\/zsecurity.org\/wp-content\/plugins\/woocommerce-currency-switcher\/img\/no_flag.png"};
+        var woocs_redraw_cart = 1;
+        var woocs_array_of_get = '{}';
+        
+        woocs_array_no_cents = '["JPY","TWD"]';
+
+        var woocs_ajaxurl = "https://zsecurity.org/wp-admin/admin-ajax.php";
+        var woocs_lang_loading = "loading";
+        var woocs_shop_is_cached =1;</script>
+  <style id="kirki-inline-styles">/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto/KFOmCnqEu92Fr1Mu72xMKTU1Kvnz.woff) format('woff');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto/KFOmCnqEu92Fr1Mu5mxMKTU1Kvnz.woff) format('woff');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto/KFOmCnqEu92Fr1Mu7mxMKTU1Kvnz.woff) format('woff');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto/KFOmCnqEu92Fr1Mu4WxMKTU1Kvnz.woff) format('woff');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto/KFOmCnqEu92Fr1Mu7WxMKTU1Kvnz.woff) format('woff');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto/KFOmCnqEu92Fr1Mu7GxMKTU1Kvnz.woff) format('woff');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto/KFOmCnqEu92Fr1Mu4mxMKTU1Kg.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto-slab/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4OmYmRlV9Su1fahTVo.woff) format('woff');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto-slab/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4Oma2RlV9Su1fahTVo.woff) format('woff');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto-slab/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4OmY2RlV9Su1fahTVo.woff) format('woff');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto-slab/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4OmbGRlV9Su1fahTVo.woff) format('woff');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto-slab/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4OmYGRlV9Su1fahTVo.woff) format('woff');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto-slab/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4OmYWRlV9Su1fahTVo.woff) format('woff');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://zsecurity.org/wp-content/fonts/roboto-slab/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4Omb2RlV9Su1fah.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style> 
+  <script>if (typeof ajaxurl === 'undefined') {
+				
+				var ajaxurl = "https://zsecurity.org/wp-admin/admin-ajax.php"
+				
+			}</script> 
+  <meta http-equiv="X-Translated-By" content="Google">
+  <meta http-equiv="X-Translated-To" content="fr">
+  <script type="text/javascript" src="https://www.gstatic.com/_/translate_http/_/js/k=translate_http.tr.fr.xGo1N-79gb4.O/d=1/rs=AN8SPfpxsp6vrDkPe8CWOHMxN2xZbJ9BrA/m=ajaxproxy" data-sourceurl="https://zsecurity.org/blackeye/"></script>
+  <meta name="robots" content="none">
+ </head>
+ <body class="post-template-default single single-post postid-60908 single-format-standard wp-embed-responsive theme-eduma pmpro-body-has-access woocommerce-no-js group-blog thim-body-preload bg-boxed-image learnpress-v4 currency-usd" id="thim-body">
+  <script type="text/javascript" src="https://www.gstatic.com/_/translate_http/_/js/k=translate_http.tr.fr.xGo1N-79gb4.O/d=1/exm=ajaxproxy,el_conf/ed=1/rs=AN8SPfpxsp6vrDkPe8CWOHMxN2xZbJ9BrA/m=navigationui" data-environment="prod" data-proxy-url="https://zsecurity-org.translate.goog" data-proxy-full-url="https://zsecurity-org.translate.goog/blackeye/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" data-source-url="https://zsecurity.org/blackeye/" data-source-language="en" data-target-language="fr" data-display-language="fr" data-detected-source-language="" data-is-source-untranslated="false" data-source-untranslated-url="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.org/blackeye/&amp;anno=2" data-use-in-place-translation="true" data-client="tr"></script>
+  <noscript>
+   <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZRXCZR" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-dark-grayscale">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0 0.49803921568627" />
+      <fefuncg type="table" tablevalues="0 0.49803921568627" />
+      <fefuncb type="table" tablevalues="0 0.49803921568627" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-grayscale">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0 1" />
+      <fefuncg type="table" tablevalues="0 1" />
+      <fefuncb type="table" tablevalues="0 1" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-purple-yellow">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0.54901960784314 0.98823529411765" />
+      <fefuncg type="table" tablevalues="0 1" />
+      <fefuncb type="table" tablevalues="0.71764705882353 0.25490196078431" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-blue-red">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0 1" />
+      <fefuncg type="table" tablevalues="0 0.27843137254902" />
+      <fefuncb type="table" tablevalues="0.5921568627451 0.27843137254902" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-midnight">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0 0" />
+      <fefuncg type="table" tablevalues="0 0.64705882352941" />
+      <fefuncb type="table" tablevalues="0 1" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-magenta-yellow">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0.78039215686275 1" />
+      <fefuncg type="table" tablevalues="0 0.94901960784314" />
+      <fefuncb type="table" tablevalues="0.35294117647059 0.47058823529412" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-purple-green">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0.65098039215686 0.40392156862745" />
+      <fefuncg type="table" tablevalues="0 1" />
+      <fefuncb type="table" tablevalues="0.44705882352941 0.4" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+   <defs>
+    <filter id="wp-duotone-blue-orange">
+     <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " />
+     <fecomponenttransfer color-interpolation-filters="sRGB">
+      <fefuncr type="table" tablevalues="0.098039215686275 1" />
+      <fefuncg type="table" tablevalues="0 0.66274509803922" />
+      <fefuncb type="table" tablevalues="0.84705882352941 0.41960784313725" />
+      <fefunca type="table" tablevalues="1 1" />
+     </fecomponenttransfer>
+     <fecomposite in2="SourceGraphic" operator="in" />
+    </filter>
+   </defs>
+  </svg>
+  <div id="preload">
+   <div class="sk-folding-cube">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+   </div>
+  </div>
+  <div class="mobile-menu-wrapper">
+   <div class="mobile-menu-inner">
+    <div class="icon-wrapper">
+     <div class="menu-mobile-effect navbar-toggle close-icon" data-effect="mobile-effect"> 
+      <span class="icon-bar"></span> 
+      <span class="icon-bar"></span> 
+      <span class="icon-bar"></span>
+     </div>
+    </div>
+    <nav class="mobile-menu-container mobile-effect">
+     <ul class="nav navbar-nav"> 
+      <li id="menu-item-42706" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-42706 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Home</a></li> 
+      <li id="menu-item-10381" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-10381 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-builder"><a href="https://zsecurity-org.translate.goog/hacking-and-security/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Hacking &amp; Security</a>
+       <div class="tc-megamenu-wrapper tc-megamenu-holder mega-sub-menu sub-menu">
+        <div id="pl-tc-megamenu-10381" class="panel-layout">
+         <div id="pg-tc-megamenu-10381-0" class="panel-grid panel-has-style">
+          <div class="thim-megamenu-row panel-row-style panel-row-style-for-tc-megamenu-10381-0">
+           <div id="pgc-tc-megamenu-10381-0-0" class="panel-grid-cell">
+            <div id="panel-tc-megamenu-10381-0-0-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="0">
+             <div class="menu-hacking-security-submenu-container">
+              <ul id="menu-hacking-security-submenu" class="menu">
+               <li id="menu-item-10396" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10396 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/network-hacking/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Network Hacking</a></li> 
+               <li id="menu-item-10397" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10397 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/web-hacking/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Web Hacking</a></li> 
+               <li id="menu-item-11241" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-11241 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/social-engineering/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Social Engineering</a></li> 
+               <li id="menu-item-11240" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11240 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/kali-linux/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Kali Linux</a></li>
+              </ul>
+             </div>
+            </div>
+           </div>
+           <div id="pgc-tc-megamenu-10381-0-1" class="panel-grid-cell">
+            <div id="panel-tc-megamenu-10381-0-1-0" class="so-panel widget widget_button panel-first-child panel-last-child" data-index="1">
+             <div class="panel-widget-style panel-widget-style-for-tc-megamenu-10381-0-1-0">
+              <div class="thim-widget-button template-base">
+               <a class="widget-button  no-border small custom_style" href="https://zsecurity-org.translate.goog/submit-an-article/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" style="font-size: 12px;font-weight: bold;color: #ffffff;border-color: #ffffff;background-color: #e54242;" data-hover="font-size: 12px;font-weight: bold;color: #ffffff;border-color: #ffffff;background-color: #c60000;"><i class="fa fa-pencil" style="font-size: 14px;"></i> Submit An Article</a>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div></li> 
+      <li id="menu-item-7813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7813 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-builder"><a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Courses</a>
+       <div class="tc-megamenu-wrapper tc-megamenu-holder mega-sub-menu sub-menu">
+        <div id="pl-tc-megamenu-7813" class="panel-layout">
+         <div id="pg-tc-megamenu-7813-0" class="panel-grid panel-no-style">
+          <div id="pgc-tc-megamenu-7813-0-0" class="panel-grid-cell">
+           <div id="panel-tc-megamenu-7813-0-0-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="0">
+            <div class="menu-about-courses-container">
+             <ul id="menu-about-courses" class="menu">
+              <li id="menu-item-7812" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7812 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">All Courses</a></li> 
+              <li id="menu-item-45156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45156 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/bundles/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Bundles</a></li> 
+              <li id="menu-item-60285" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-60285 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/courses/masterclass-membership/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Masterclass</a></li> 
+              <li id="menu-item-46254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46254 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/vip-membership/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">VIP Membership</a></li> 
+              <li id="menu-item-8080" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8080 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/faq/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">FAQ</a></li>
+             </ul>
+            </div>
+           </div>
+          </div>
+          <div id="pgc-tc-megamenu-7813-0-1" class="panel-grid-cell">
+           <div id="panel-tc-megamenu-7813-0-1-0" class="so-panel widget widget_learnpress_widget_course_popular learnpress widget_course_popular panel-first-child panel-last-child" data-index="1">
+            <h3 class="widget-title">Popular Courses</h3>
+            <div class="learnpress-widget-wrapper learnpress-widget-wrapper__restapi" data-widget="{&quot;widget&quot;:&quot;learnpress_widget_course_popular&quot;,&quot;instance&quot;:&quot;YToxNDp7czo1OiJ0aXRsZSI7czoxNToiUG9wdWxhciBDb3Vyc2VzIjtzOjEyOiJzaG93X3RlYWNoZXIiO3M6MToiMCI7czoxMToic2hvd19sZXNzb24iO3M6MToiMCI7czoxNDoic2hvd190aHVtYm5haWwiO3M6MToiMSI7czo1OiJsaW1pdCI7czoxOiIxIjtzOjExOiJkZXNjX2xlbmd0aCI7czowOiIiO3M6MjI6InNob3dfZW5yb2xsZWRfc3R1ZGVudHMiO3M6MToiMCI7czoxMDoic2hvd19wcmljZSI7czoxOiIwIjtzOjk6ImNzc19jbGFzcyI7czoyMDoibWVnYW1lbnUtcG9wLWNvdXJzZXMiO3M6MTY6ImJvdHRvbV9saW5rX3RleHQiO3M6MDoiIjtzOjEyOiJ3aWRnZXQtY2xhc3MiO3M6MDoiIjtzOjExOiJwYW5lbHNfaW5mbyI7YTo4OntzOjU6ImNsYXNzIjtzOjI1OiJMUF9XaWRnZXRfUG9wdWxhcl9Db3Vyc2VzIjtzOjQ6ImdyaWQiO2k6MDtzOjQ6ImNlbGwiO2k6MTtzOjI6ImlkIjtpOjE7czo5OiJ3aWRnZXRfaWQiO3M6MzY6IjlhYmI5MjA0LTQ3ZGUtNGQwNS04OWM0LTIyNWFhNzkxNDUwZSI7czo1OiJzdHlsZSI7YToyOntzOjI3OiJiYWNrZ3JvdW5kX2ltYWdlX2F0dGFjaG1lbnQiO2I6MDtzOjE4OiJiYWNrZ3JvdW5kX2Rpc3BsYXkiO3M6NDoidGlsZSI7fXM6MTA6ImNlbGxfaW5kZXgiO2k6MDtzOjEyOiJ3aWRnZXRfaW5kZXgiO2k6MTt9czoyMjoic29fc2lkZWJhcl9lbXVsYXRvcl9pZCI7czozNToibHAtd2lkZ2V0LXBvcHVsYXItY291cnNlcy04MDc4MTAwMDEiO3M6MTE6Im9wdGlvbl9uYW1lIjtzOjMyOiJ3aWRnZXRfbHAtd2lkZ2V0LXBvcHVsYXItY291cnNlcyI7fQ==&quot;,&quot;hash&quot;:&quot;1c07a1f97d6a175943e61ea19fb6ac74&quot;}">
+             <ul class="lp-skeleton-animation" style> 
+              <li style="width: 91%; "></li> 
+              <li style="width: 65%; "></li> 
+              <li style="width: 85%; "></li> 
+              <li style="width: 96%; "></li> 
+              <li style="width: 62%; "></li>
+             </ul>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div></li> 
+      <li id="menu-item-7764" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7764 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/shop/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Shop</a></li> 
+      <li id="menu-item-59593" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59593 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/competition-2/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Competition</a></li> 
+      <li id="menu-item-29219" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29219 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-builder"><a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com" class="tc-menu-inner">Services</a>
+       <div class="tc-megamenu-wrapper tc-megamenu-holder mega-sub-menu sub-menu">
+        <div id="pl-tc-megamenu-29219" class="panel-layout">
+         <div id="pg-tc-megamenu-29219-0" class="panel-grid panel-has-style">
+          <div id="services-menu" class="panel-row-style panel-row-style-for-tc-megamenu-29219-0">
+           <div id="pgc-tc-megamenu-29219-0-0" class="panel-grid-cell">
+            <div id="panel-tc-megamenu-29219-0-0-0" class="so-panel widget widget_sow-features panel-first-child panel-last-child" data-index="0">
+             <div class="so-widget-sow-features so-widget-sow-features-default-eec270d3b90e">
+              <div class="sow-features-list sow-features-responsive">
+               <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/pentesting/">
+                 <div class="sow-icon-container sow-container-none" style="color: #404040; "> 
+                  <span class="sow-icon-icomoon" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                 </div> </a>
+                <div class="textwidget">
+                 <h5> <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/pentesting/"> Penetration Testing </a></h5>
+                </div>
+               </div>
+               <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/consulting/">
+                 <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                  <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                 </div> </a>
+                <div class="textwidget">
+                 <h5> <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/consulting/"> Consulting </a></h5>
+                </div>
+               </div>
+               <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/codereview/">
+                 <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                  <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                 </div> </a>
+                <div class="textwidget">
+                 <h5> <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/codereview/"> Code Review </a></h5>
+                </div>
+               </div>
+               <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                <a href="https://zsecurity-org.translate.goog/one-on-one-training/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">
+                 <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                  <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                 </div> </a>
+                <div class="textwidget">
+                 <h5> <a href="https://zsecurity-org.translate.goog/one-on-one-training/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> One on one Training </a></h5>
+                </div>
+               </div>
+               <div class="sow-features-feature sow-icon-container-position-top sow-features-feature-last-row" style="width: 50%">
+                <a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">
+                 <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                  <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                 </div> </a>
+                <div class="textwidget">
+                 <h5> <a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> Online Courses </a></h5>
+                </div>
+               </div>
+               <div class="sow-features-feature sow-icon-container-position-top sow-features-feature-last-row" style="width: 50%">
+                <a href="https://zsecurity-org.translate.goog/vpn/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">
+                 <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                  <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                 </div> </a>
+                <div class="textwidget">
+                 <h5> <a href="https://zsecurity-org.translate.goog/vpn/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> VPN </a></h5>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div></li> 
+      <li id="menu-item-26085" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26085 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/blog/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Blog</a></li> 
+      <li class="menu-right header_v1">
+       <ul>
+        <li id="courses-searching-3" class="widget widget_courses-searching">
+         <div class="thim-widget-courses-searching template-courses-searching">
+          <div class="thim-course-search-overlay">
+           <div class="search-toggle">
+            <i class="fa fa-search"></i>
+           </div>
+           <div class="courses-searching layout-overlay">
+            <div class="search-popup-bg"></div>
+            <form method="get" action="https://zsecurity.org/courses/"> 
+             <input type="text" value name="s" placeholder="Search courses..." class="thim-s form-control courses-search-input" autocomplete="off"> 
+             <input type="hidden" value="course" name="ref"> 
+             <button type="submit"><i class="fa fa-search"></i></button> 
+             <span class="widget-search-close"></span>
+            </form>
+            <ul class="courses-list-search list-unstyled"></ul>
+           </div>
+          </div>
+         </div></li>
+        <li id="woocommerce_widget_cart-2" class="widget woocommerce widget_shopping_cart"><h4>Cart</h4>
+         <div class="minicart_hover" id="header-mini-cart">
+          <span class="cart-items-number" style="color:#e54242"><i class="fa fa-fw fa-shopping-cart"></i></span>
+          <div class="clear"></div>
+         </div>
+         <div class="widget_shopping_cart_content" style="display: none;"></div></li>
+       </ul></li>
+     </ul>
+    </nav>
+   </div>
+  </div>
+  <div id="wrapper-container" class="wrapper-container">
+   <div class="content-pusher">
+    <header id="masthead" class="site-header affix-top bg-custom-sticky sticky-header header_default header_v1">
+     <div id="toolbar" class="toolbar">
+      <div class="container">
+       <div class="row">
+        <div class="col-sm-12">
+         <div class="toolbar-container"> 
+          <a class="vip-toolbar-link" href="https://zsecurity-org.translate.goog/vip-membership/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">VIP Membership</a> 
+          <a class="vip-toolbar-link" href="https://zsecurity-org.translate.goog/courses/masterclass-membership/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Masterclass</a>
+          <div class="vpn-bar" id="statusbar"> 
+           <span id="vpnbarhover"> <a style="text-decoration: none" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsvpn.com/user/aff.php?aff%3D6"><span id="vpnstatus"></span></a> <span id="vpnlocation"></span> <span id="vpnip"></span> </span>
+          </div>
+          <aside id="text-2" class="widget widget_text">
+           <div class="textwidget">
+            <div class="thim-have-any-question">
+              Got a question?
+             <div class="mobile"></div>
+             <div class="email">
+              <i class="fa fa-envelope"></i>
+              <a href="https://zsecurity-org.translate.goog/cdn-cgi/l/email-protection?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp#40292e262f003a33252335322934396e2f3227"><span class="__cf_email__" data-cfemail="432a2d252c033930262036312a373a6d2c3124">[email&nbsp;protected]</span></a>
+             </div>
+            </div>
+           </div>
+          </aside>
+          <aside id="login-popup-7" class="widget widget_login-popup">
+           <div class="thim-widget-login-popup thim-widget-login-popup-base template-base">
+            <div class="thim-link-login thim-login-popup"> 
+             <a class="register js-show-popup" href="https://zsecurity-org.translate.goog/account/?action=register&amp;_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Register</a>
+             <a class="login js-show-popup" href="https://zsecurity-org.translate.goog/account/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Login</a>
+            </div>
+           </div>
+          </aside>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="thim-nav-wrapper container">
+      <div class="row">
+       <div class="navigation col-sm-12">
+        <div class="tm-table">
+         <div class="width-logo table-cell sm-logo"> 
+          <a href="https://zsecurity-org.translate.goog/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" title="zSecurity - Ethical Hacking Courses, Tutorials, News, Products and more!" rel="home" class="thim-logo"><img src="https://zsecurity.org/wp-content/uploads/2018/09/zs-top-left.png" alt="zSecurity" data-sticky="https://zsecurity.org/wp-content/uploads/2018/09/zs-top-left.png"></a>
+         </div>
+         <nav class="width-navigation table-cell table-right">
+          <ul class="nav navbar-nav menu-main-menu"> 
+           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-42706 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Home</a></li> 
+           <li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-10381 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-builder"><a href="https://zsecurity-org.translate.goog/hacking-and-security/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Hacking &amp; Security</a>
+            <div class="tc-megamenu-wrapper tc-megamenu-holder mega-sub-menu sub-menu">
+             <div id="pl-tc-megamenu-10381" class="panel-layout">
+              <div id="pg-tc-megamenu-10381-0" class="panel-grid panel-has-style">
+               <div class="thim-megamenu-row panel-row-style panel-row-style-for-tc-megamenu-10381-0">
+                <div id="pgc-tc-megamenu-10381-0-0" class="panel-grid-cell">
+                 <div id="panel-tc-megamenu-10381-0-0-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="0">
+                  <div class="menu-hacking-security-submenu-container">
+                   <ul id="menu-hacking-security-submenu-1" class="menu">
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10396 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/network-hacking/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Network Hacking</a></li> 
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10397 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/web-hacking/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Web Hacking</a></li> 
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-11241 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/social-engineering/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Social Engineering</a></li> 
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11240 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/kali-linux/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Kali Linux</a></li>
+                   </ul>
+                  </div>
+                 </div>
+                </div>
+                <div id="pgc-tc-megamenu-10381-0-1" class="panel-grid-cell">
+                 <div id="panel-tc-megamenu-10381-0-1-0" class="so-panel widget widget_button panel-first-child panel-last-child" data-index="1">
+                  <div class="panel-widget-style panel-widget-style-for-tc-megamenu-10381-0-1-0">
+                   <div class="thim-widget-button template-base">
+                    <a class="widget-button  no-border small custom_style" href="https://zsecurity-org.translate.goog/submit-an-article/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" style="font-size: 12px;font-weight: bold;color: #ffffff;border-color: #ffffff;background-color: #e54242;" data-hover="font-size: 12px;font-weight: bold;color: #ffffff;border-color: #ffffff;background-color: #c60000;"><i class="fa fa-pencil" style="font-size: 14px;"></i> Submit An Article</a>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div></li> 
+           <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7813 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-builder"><a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Courses</a>
+            <div class="tc-megamenu-wrapper tc-megamenu-holder mega-sub-menu sub-menu">
+             <div id="pl-tc-megamenu-7813" class="panel-layout">
+              <div id="pg-tc-megamenu-7813-0" class="panel-grid panel-no-style">
+               <div id="pgc-tc-megamenu-7813-0-0" class="panel-grid-cell">
+                <div id="panel-tc-megamenu-7813-0-0-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="0">
+                 <div class="menu-about-courses-container">
+                  <ul id="menu-about-courses-1" class="menu">
+                   <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7812 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">All Courses</a></li> 
+                   <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45156 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/bundles/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Bundles</a></li> 
+                   <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-60285 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/courses/masterclass-membership/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Masterclass</a></li> 
+                   <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46254 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/vip-membership/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">VIP Membership</a></li> 
+                   <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8080 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/faq/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">FAQ</a></li>
+                  </ul>
+                 </div>
+                </div>
+               </div>
+               <div id="pgc-tc-megamenu-7813-0-1" class="panel-grid-cell">
+                <div id="panel-tc-megamenu-7813-0-1-0" class="so-panel widget widget_learnpress_widget_course_popular learnpress widget_course_popular panel-first-child panel-last-child" data-index="1">
+                 <h3 class="widget-title">Popular Courses</h3>
+                 <div class="learnpress-widget-wrapper learnpress-widget-wrapper__restapi" data-widget="{&quot;widget&quot;:&quot;learnpress_widget_course_popular&quot;,&quot;instance&quot;:&quot;YToxNDp7czo1OiJ0aXRsZSI7czoxNToiUG9wdWxhciBDb3Vyc2VzIjtzOjEyOiJzaG93X3RlYWNoZXIiO3M6MToiMCI7czoxMToic2hvd19sZXNzb24iO3M6MToiMCI7czoxNDoic2hvd190aHVtYm5haWwiO3M6MToiMSI7czo1OiJsaW1pdCI7czoxOiIxIjtzOjExOiJkZXNjX2xlbmd0aCI7czowOiIiO3M6MjI6InNob3dfZW5yb2xsZWRfc3R1ZGVudHMiO3M6MToiMCI7czoxMDoic2hvd19wcmljZSI7czoxOiIwIjtzOjk6ImNzc19jbGFzcyI7czoyMDoibWVnYW1lbnUtcG9wLWNvdXJzZXMiO3M6MTY6ImJvdHRvbV9saW5rX3RleHQiO3M6MDoiIjtzOjEyOiJ3aWRnZXQtY2xhc3MiO3M6MDoiIjtzOjExOiJwYW5lbHNfaW5mbyI7YTo4OntzOjU6ImNsYXNzIjtzOjI1OiJMUF9XaWRnZXRfUG9wdWxhcl9Db3Vyc2VzIjtzOjQ6ImdyaWQiO2k6MDtzOjQ6ImNlbGwiO2k6MTtzOjI6ImlkIjtpOjE7czo5OiJ3aWRnZXRfaWQiO3M6MzY6IjlhYmI5MjA0LTQ3ZGUtNGQwNS04OWM0LTIyNWFhNzkxNDUwZSI7czo1OiJzdHlsZSI7YToyOntzOjI3OiJiYWNrZ3JvdW5kX2ltYWdlX2F0dGFjaG1lbnQiO2I6MDtzOjE4OiJiYWNrZ3JvdW5kX2Rpc3BsYXkiO3M6NDoidGlsZSI7fXM6MTA6ImNlbGxfaW5kZXgiO2k6MDtzOjEyOiJ3aWRnZXRfaW5kZXgiO2k6MTt9czoyMjoic29fc2lkZWJhcl9lbXVsYXRvcl9pZCI7czozNToibHAtd2lkZ2V0LXBvcHVsYXItY291cnNlcy04MDc4MTAwMDEiO3M6MTE6Im9wdGlvbl9uYW1lIjtzOjMyOiJ3aWRnZXRfbHAtd2lkZ2V0LXBvcHVsYXItY291cnNlcyI7fQ==&quot;,&quot;hash&quot;:&quot;1c07a1f97d6a175943e61ea19fb6ac74&quot;}">
+                  <ul class="lp-skeleton-animation" style> 
+                   <li style="width: 70%; "></li> 
+                   <li style="width: 80%; "></li> 
+                   <li style="width: 87%; "></li> 
+                   <li style="width: 64%; "></li> 
+                   <li style="width: 77%; "></li>
+                  </ul>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div></li> 
+           <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7764 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/shop/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Shop</a></li> 
+           <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59593 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/competition-2/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Competition</a></li> 
+           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29219 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-builder"><a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com" class="tc-menu-inner">Services</a>
+            <div class="tc-megamenu-wrapper tc-megamenu-holder mega-sub-menu sub-menu">
+             <div id="pl-tc-megamenu-29219" class="panel-layout">
+              <div id="pg-tc-megamenu-29219-0" class="panel-grid panel-has-style">
+               <div id="services-menu" class="panel-row-style panel-row-style-for-tc-megamenu-29219-0">
+                <div id="pgc-tc-megamenu-29219-0-0" class="panel-grid-cell">
+                 <div id="panel-tc-megamenu-29219-0-0-0" class="so-panel widget widget_sow-features panel-first-child panel-last-child" data-index="0">
+                  <div class="so-widget-sow-features so-widget-sow-features-default-eec270d3b90e">
+                   <div class="sow-features-list sow-features-responsive">
+                    <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                     <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/pentesting/">
+                      <div class="sow-icon-container sow-container-none" style="color: #404040; "> 
+                       <span class="sow-icon-icomoon" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                      </div> </a>
+                     <div class="textwidget">
+                      <h5> <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/pentesting/"> Penetration Testing </a></h5>
+                     </div>
+                    </div>
+                    <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                     <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/consulting/">
+                      <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                       <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                      </div> </a>
+                     <div class="textwidget">
+                      <h5> <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/consulting/"> Consulting </a></h5>
+                     </div>
+                    </div>
+                    <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                     <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/codereview/">
+                      <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                       <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                      </div> </a>
+                     <div class="textwidget">
+                      <h5> <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/codereview/"> Code Review </a></h5>
+                     </div>
+                    </div>
+                    <div class="sow-features-feature sow-icon-container-position-top " style="width: 50%">
+                     <a href="https://zsecurity-org.translate.goog/one-on-one-training/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">
+                      <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                       <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                      </div> </a>
+                     <div class="textwidget">
+                      <h5> <a href="https://zsecurity-org.translate.goog/one-on-one-training/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> One on one Training </a></h5>
+                     </div>
+                    </div>
+                    <div class="sow-features-feature sow-icon-container-position-top sow-features-feature-last-row" style="width: 50%">
+                     <a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">
+                      <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                       <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                      </div> </a>
+                     <div class="textwidget">
+                      <h5> <a href="https://zsecurity-org.translate.goog/courses/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> Online Courses </a></h5>
+                     </div>
+                    </div>
+                    <div class="sow-features-feature sow-icon-container-position-top sow-features-feature-last-row" style="width: 50%">
+                     <a href="https://zsecurity-org.translate.goog/vpn/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">
+                      <div class="sow-icon-container sow-container-none" style="color: #e54242; "> 
+                       <span class="sow-icon-fontawesome sow-fas" data-sow-icon="" style="font-size: 30px; color: #e54242"></span>
+                      </div> </a>
+                     <div class="textwidget">
+                      <h5> <a href="https://zsecurity-org.translate.goog/vpn/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> VPN </a></h5>
+                     </div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div></li> 
+           <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26085 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/category/blog/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Blog</a></li> 
+           <li class="menu-right">
+            <ul>
+             <li id="courses-searching-3" class="widget widget_courses-searching">
+              <div class="thim-widget-courses-searching template-courses-searching">
+               <div class="thim-course-search-overlay">
+                <div class="search-toggle">
+                 <i class="fa fa-search"></i>
+                </div>
+                <div class="courses-searching layout-overlay">
+                 <div class="search-popup-bg"></div>
+                 <form method="get" action="https://zsecurity.org/courses/"> 
+                  <input type="text" value name="s" placeholder="Search courses..." class="thim-s form-control courses-search-input" autocomplete="off"> 
+                  <input type="hidden" value="course" name="ref"> 
+                  <button type="submit"><i class="fa fa-search"></i></button> 
+                  <span class="widget-search-close"></span>
+                 </form>
+                 <ul class="courses-list-search list-unstyled"></ul>
+                </div>
+               </div>
+              </div></li>
+             <li id="woocommerce_widget_cart-2" class="widget woocommerce widget_shopping_cart"><h4>Cart</h4>
+              <div class="minicart_hover" id="header-mini-cart">
+               <span class="cart-items-number" style="color:#e54242"><i class="fa fa-fw fa-shopping-cart"></i></span>
+               <div class="clear"></div>
+              </div>
+              <div class="widget_shopping_cart_content" style="display: none;"></div></li>
+            </ul></li>
+          </ul>
+         </nav>
+         <div class="menu-mobile-effect navbar-toggle" data-effect="mobile-effect"> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </header>
+    <div id="main-content">
+     <section class="content-area">
+      <div class="top_heading_out">
+       <div class="top_site_main" style="color: #ffffff;background-image:url(https://thim.staging.wpengine.com/wp-content/themes/eduma/images/bg-page.jpg);">
+        <span class="overlay-top-header" style="background-color:rgba(0,0,0,0.5);"></span>
+        <div class="page-title-wrapper">
+         <div class="banner-wrapper container">
+          <h2>Hacking &amp; Security</h2>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="container sidebar-right site-content">
+       <div class="row">
+        <main id="main" class="site-main col-sm-9 alignleft">
+         <div class="page-content">
+          <article id="post-60908" class="post-60908 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking-and-security category-social-engineering pmpro-has-access">
+           <div class="page-content-inner">
+            <header class="entry-header">
+             <h1 class="entry-title">BlackEye – Creating a Phishing Page</h1>
+             <ul class="entry-meta"> 
+              <li class="author"> <span>Posted by</span> <span class="vcard author author_name"><a href="https://zsecurity-org.translate.goog/author/kalyanirajalingham85/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Kalyani Rajalingham</a></span> </li> 
+              <li class="entry-date"> <span>Date</span> <span class="value"> December 30, 2021</span> </li>
+             </ul>
+            </header>
+            <div class="post-formats-wrapper">
+             <a class="post-image" href="https://zsecurity-org.translate.goog/blackeye/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"><img width="370" height="208" src="https://zsecurity.org/wp-content/uploads/2021/12/Zsec-Post-2.png" class="attachment-full size-full wp-post-image" alt srcset="https://zsecurity-org.translate.goog/wp-content/uploads/2021/12/Zsec-Post-2.png?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp 370w,https://zsecurity-org.translate.goog/wp-content/uploads/2021/12/Zsec-Post-2-300x169.png?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp 300w,https://zsecurity-org.translate.goog/wp-content/uploads/2021/12/Zsec-Post-2-128x72.png?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp 128w" sizes="(max-width: 370px) 100vw, 370px"></a>
+            </div>
+            <div class="entry-content">
+             <p>Phishing is a technique commonly used by hackers all over to steal credentials. Usernames, and passwords are the most important information that hackers tend to be after, but it can include other sensitive information as well. BlackEye is a tool that was designed specifically for the purpose of creating phishing emails and credentials harvesting. In fact, it’s a great tool that comes with copies of 38 distinct websites including amazon, facebook, etc… In this tutorial, we will learn how to use BlackEye to create a successful phishing attack.</p>
+             <p>BlackEye can be downloaded from github:</p>
+             <pre>git clone https://github.com/An0nUD4Y/blackeye.git
+cd blackeye
+bash blackeye.sh</pre>
+             <p>Make sure that you have php, and curl installed! If you do not, you’ll get an error. Once it shows you a list of websites, pick the one you’d like to clone and click enter. Now, for some people, everything after that goes just fine. They get a link that they can send to the target, and a listener is set-up automatically. If such is the case for you, then copy the link that it displays, and send it to the target.</p>
+             <p>However, in other cases, you get a no link error. What that means is that the link was not available. So let’s install a few things, and fix that.</p>
+             <h3><em><u>Step #1: Php</u></em></h3>
+             <p>Navigate to the blackeye folder. In my case, that’s the Downloads folder (/home/kalyani/Downloads/blackeye).&nbsp; And then navigate to the sites folder, and choose the site you want to copy. In my case, it’s google.</p>
+             <p>So in /blackeye/sites/google, and type:</p>
+             <pre>php -S localhost:8080</pre>
+             <p>Keep this running in the background.</p>
+             <h3><em><u>Step #2: Ngrok</u></em></h3>
+             <p>The second step is to create an ngrok account. It’s free, and easy. You can create an account at <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://dashboard.ngrok.com/signup">https://dashboard.ngrok.com/signup</a>. Then download and unzip ngrok.</p>
+             <pre>unzip /path/to/ngrok.zip</pre>
+             <p>Once that is done, you need to go to the folder where you downloaded it, and type the following:</p>
+             <pre>./ngrok authtoken [token]</pre>
+             <p>This link will be given to you by ngrok.&nbsp;Then navigate to the blackeye folder, and type the following:<strong>&nbsp;</strong></p>
+             <pre>./ngrok http 8080</pre>
+             <p>You will get a link here under “forwarding”. Copy that link, and send it to your target. In my case, the link looked something like this:</p>
+             <p><img loading="lazy" class="alignnone size-full wp-image-60907" src="https://zsecurity.org/wp-content/uploads/2021/12/image001.jpg" alt width="554" height="363" srcset="https://zsecurity-org.translate.goog/wp-content/uploads/2021/12/image001.jpg?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp 554w,https://zsecurity-org.translate.goog/wp-content/uploads/2021/12/image001-300x197.jpg?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp 300w" sizes="(max-width: 554px) 100vw, 554px"></p>
+             <p>When the target enters his or her credentials, navigate to the /blackeye/sites/google folder, and open the username.txt file. His or her credentials will be found in the username.txt file.</p>
+             <p><img loading="lazy" class="alignnone size-full wp-image-60905" src="https://zsecurity.org/wp-content/uploads/2021/12/image002.jpg" alt width="553" height="362" srcset="https://zsecurity-org.translate.goog/wp-content/uploads/2021/12/image002.jpg?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp 553w,https://zsecurity-org.translate.goog/wp-content/uploads/2021/12/image002-300x196.jpg?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp 300w" sizes="(max-width: 553px) 100vw, 553px"></p>
+             <p>Phishing attacks can be quite convincing and very deadly if done correctly. In particular, we can use existing tools to create phishing sites. Much like ShellPhish, BlackEye is a wonderful tool that can create phishing links that work.</p>
+             <p>Happy Hacking!</p>
+            </div>
+            <div class="entry-tag-share">
+             <div class="row">
+              <div class="col-sm-6"></div>
+              <div class="col-sm-6">
+               <ul class="thim-social-share">
+                <li class="heading">Share:</li>
+                <li>
+                 <div class="facebook-social">
+                  <a target="_blank" class="facebook" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.facebook.com/sharer.php?u%3Dhttps%253A%252F%252Fzsecurity.org%252Fblackeye%252F" title="Facebook"><i class="fa fa-facebook"></i></a>
+                 </div></li>
+                <li>
+                 <div class="googleplus-social">
+                  <a target="_blank" class="googleplus" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://plus.google.com/share?url%3Dhttps%253A%252F%252Fzsecurity.org%252Fblackeye%252F%26title%3DBlackEye%2520%2526%25238211%253B%2520Creating%2520a%2520Phishing%2520Page" title="Google Plus" onclick="javascript:window.open(this.href, &quot;&quot;, &quot;menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600&quot;);return false;"><i class="fa fa-google"></i></a>
+                 </div></li>
+                <li>
+                 <div class="twitter-social">
+                  <a target="_blank" class="twitter" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://twitter.com/share?url%3Dhttps%253A%252F%252Fzsecurity.org%252Fblackeye%252F%26text%3DBlackEye%2520%2526%25238211%253B%2520Creating%2520a%2520Phishing%2520Page" title="Twitter"><i class="fa fa-twitter"></i></a>
+                 </div></li>
+                <li>
+                 <div class="pinterest-social">
+                  <a target="_blank" class="pinterest" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://pinterest.com/pin/create/button/?url%3Dhttps%253A%252F%252Fzsecurity.org%252Fblackeye%252F%26description%3DPhishing%2520is%2520a%2520technique%2520commonly%2520used%2520by%2520hackers%2520all%2520over%2520to%2520steal%2520credentials.%2520Usernames%252C%2520and%2520passwords%2520are%2520the%2520most%2520important%2520information%2520that%2520hackers%2520tend%2520to%2520be%2520after%252C%2520but%2520it%2520can%2520include%2520other%2520sensitive%2520information%2520as%2520well.%2520BlackEye%2520is%2520a%2520tool%2520%2526hellip%253B%2520%26media%3Dhttps%253A%252F%252Fzsecurity.org%252Fwp-content%252Fuploads%252F2021%252F12%252FZsec-Post-2.png" onclick="window.open(this.href); return false;" title="Pinterest"><i class="fa fa-pinterest-p"></i></a>
+                 </div></li>
+               </ul>
+              </div>
+             </div>
+            </div>
+            <div class="thim-about-author">
+             <div class="author-wrapper">
+              <div class="author-avatar"> 
+               <a href="https://zsecurity-org.translate.goog/author/kalyanirajalingham85/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> <img alt="Kalyani Rajalingham" src="https://zsecurity.org/wp-content/uploads/learn-press-profile/26673/1177e7b4983620d489d2c01c9ae558c5.jpg" class="avatar avatar-110 photo" height="110" width="110"> </a>
+              </div>
+              <div class="author-bio">
+               <div class="author-top"> 
+                <a class="name" href="https://zsecurity-org.translate.goog/author/kalyanirajalingham85/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp"> Kalyani Rajalingham </a>
+               </div>
+              </div>
+              <div class="author-description">
+               <p>I'm from Sri Lanka (live in Canada), and am a Linux and code lover.</p>
+              </div>
+             </div>
+            </div>
+            <div class="entry-navigation-post">
+             <div class="prev-post">
+              <p class="heading">Previous post</p>
+              <h5 class="title"> <a href="https://zsecurity-org.translate.goog/how-to-make-a-custom-reverse-shell-in-php/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">How to Make a Custom Reverse Shell In PHP</a></h5>
+              <div class="date">
+                December 30, 2021
+              </div>
+             </div>
+             <div class="next-post">
+              <p class="heading">Next post</p>
+              <h5 class="title"> <a href="https://zsecurity-org.translate.goog/solving-ctfs-with-sn1per/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Solving CTFs With Sn1per</a></h5>
+              <div class="date">
+                January 1, 2022
+              </div>
+             </div>
+            </div>
+            <section class="related-archive">
+             <h3 class="single-title">You may also like</h3>
+             <div class="archived-posts">
+              <div class="thim-carousel-wrapper" data-visible="3" data-itemtablet="2" data-itemmobile="1" data-pagination="1">
+               <div class="post-67118 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking-and-security pmpro-has-access">
+                <div class="category-posts clear"> 
+                 <img src="https://zsecurity.org/wp-content/uploads/2022/10/Copy_of_Copy_of_free_Delivery-2_370x208-300x200.png" alt="Copy_of_Copy_of_free_Delivery-2_370x208" title="Copy_of_Copy_of_free_Delivery-2_370x208" width="300" height="200">
+                 <div class="rel-post-text">
+                  <h5> <a href="https://zsecurity-org.translate.goog/how-to-easily-verify-gmail-accounts/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" title="How to easily verify Gmail accounts">How to easily verify Gmail accounts</a></h5>
+                  <div class="date">
+                    13 October, 2022
+                  </div>
+                 </div>
+                </div>
+               </div>
+               <div class="post-66561 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking-and-security pmpro-has-access">
+                <div class="category-posts clear"> 
+                 <img src="https://zsecurity.org/wp-content/uploads/2022/10/maxresdefault2_370x208-300x200.jpg" alt="maxresdefault2_370x208" title="maxresdefault2_370x208" width="300" height="200">
+                 <div class="rel-post-text">
+                  <h5> <a href="https://zsecurity-org.translate.goog/encryption-algorithms-with-bash/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" title="Encryption Algorithms with Bash">Encryption Algorithms with Bash</a></h5>
+                  <div class="date">
+                    9 October, 2022
+                  </div>
+                 </div>
+                </div>
+               </div>
+               <div class="post-66842 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking-and-security pmpro-has-access">
+                <div class="category-posts clear"> 
+                 <img src="https://zsecurity.org/wp-content/uploads/2022/09/powershell-for-hackers_370x208-300x200.png" alt="powershell-for-hackers_370x208" title="powershell-for-hackers_370x208" width="300" height="200">
+                 <div class="rel-post-text">
+                  <h5> <a href="https://zsecurity-org.translate.goog/powershell-for-hackers-payload-development/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" title="Powershell for Hackers – Payload Development">Powershell for Hackers – Payload Development</a></h5>
+                  <div class="date">
+                    3 October, 2022
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </section>
+           </div>
+          </article>
+          <div id="comments" class="comments-area">
+           <div class="comment-respond-area">
+            <div id="respond" class="comment-respond">
+             <h3 id="reply-title" class="comment-reply-title">Leave A Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://zsecurity-org.translate.goog/blackeye/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp#respond" style="display:none;">Cancel reply</a></small></h3>
+             <p class="must-log-in">You must be <a href="https://zsecurity-org.translate.goog/wp-login.php?redirect_to=https://zsecurity.org/blackeye/&amp;_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">logged in</a> to post a comment.</p>
+            </div>
+           </div>
+           <div class="clear"></div>
+          </div>
+         </div>
+        </main>
+        <div id="sidebar" class="widget-area col-sm-3 sticky-sidebar" role="complementary">
+         <aside id="categories-2" class="widget widget_categories">
+          <h4 class="widget-title">Categories</h4>
+          <ul> 
+           <li class="cat-item cat-item-154"><a href="https://zsecurity-org.translate.goog/category/cryptography/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Cryptography</a> </li> 
+           <li class="cat-item cat-item-155"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/cryptography-hacking-and-security/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Cryptography</a> </li> 
+           <li class="cat-item cat-item-327"><a href="https://zsecurity-org.translate.goog/category/ctf/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">CTF</a> </li> 
+           <li class="cat-item cat-item-140"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/forensics/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Forensics</a> </li> 
+           <li class="cat-item cat-item-104"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Hacking &amp; Security</a> </li> 
+           <li class="cat-item cat-item-376"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/hardware/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Hardware</a> </li> 
+           <li class="cat-item cat-item-229"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/iot/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">IOT</a> </li> 
+           <li class="cat-item cat-item-121"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/kali-linux/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Kali Linux</a> </li> 
+           <li class="cat-item cat-item-103"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/network-hacking/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Network Hacking</a> </li> 
+           <li class="cat-item cat-item-95"><a href="https://zsecurity-org.translate.goog/category/news/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">News</a> </li> 
+           <li class="cat-item cat-item-278"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/osint/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">OSINT</a> </li> 
+           <li class="cat-item cat-item-152"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/post-exploitation-hacking-and-security/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Post Exploitation</a> </li> 
+           <li class="cat-item cat-item-151"><a href="https://zsecurity-org.translate.goog/category/post-exploitation/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Post Exploitation</a> </li> 
+           <li class="cat-item cat-item-370"><a href="https://zsecurity-org.translate.goog/category/privacy/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Privacy</a> </li> 
+           <li class="cat-item cat-item-342"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/programming/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Programming</a> </li> 
+           <li class="cat-item cat-item-96"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/security/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Security</a> </li> 
+           <li class="cat-item cat-item-131"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/social-engineering/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Social Engineering</a> </li> 
+           <li class="cat-item cat-item-1"><a href="https://zsecurity-org.translate.goog/category/uncategorized/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Uncategorized</a> </li> 
+           <li class="cat-item cat-item-94"><a href="https://zsecurity-org.translate.goog/category/hacking-and-security/web-hacking/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Web Hacking</a> </li>
+          </ul>
+         </aside>
+         <aside id="list-post-10" class="widget widget_list-post">
+          <div class="thim-widget-list-post template-list-post">
+           <h3 class="widget-title">Popular Posts</h3>
+           <div class="thim-list-posts sidebar">
+            <div class="item-post post-10679 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking-and-security category-kali-linux tag-black-screen tag-blank tag-kali tag-virtual-box tag-vt pmpro-has-access">
+             <div class="article-title-wrapper">
+              <h5><a href="https://zsecurity-org.translate.goog/got-a-blank-screen-after-importing-kali-in-virtual-box-heres-how-to-fix-it/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="article-title">Got a Blank Screen After Importing Kali in Virtual Box ? Here’s How To Fix It</a></h5>
+              <div class="article-date">
+               <span class="day">25</span>
+               <span class="month">Jan</span>
+               <span class="year">2018</span>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </aside>
+         <aside id="social-2" class="widget widget_social">
+          <div class="thim-widget-social template-base">
+           <div class="thim-social">
+            <h4 class="widget-title">Connect with us</h4>
+            <ul class="social_link"> 
+             <li><a rel="noreferrer" class="facebook hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.facebook.com/ZSecurity-1453250781458287/" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
+             <li><a rel="noreferrer" class="twitter hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://twitter.com/_zSecurity_" target="_blank"><i class="fa fa-twitter"></i>Twitter</a></li>
+             <li><a rel="noreferrer" class="linkedin hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.linkedin.com/company/zsecurity-org/" target="_blank"><i class="fa fa-linkedin"></i>LinkedIn</a></li>
+             <li><a rel="noreferrer" class="instagram hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.instagram.com/zsecurity_org/" target="_blank"><i class="fa fa-instagram"></i>Instagram</a></li>
+             <li><a rel="noreferrer" class="youtube hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.youtube.com/c/zaidsabeeh-zsecurity" target="_blank"><i class="fa fa-youtube"></i>Youtube</a></li>
+            </ul>
+           </div>
+          </div>
+         </aside>
+        </div>
+       </div>
+      </div>
+     </section>
+     <footer id="colophon" class=" site-footer has-footer-bottom">
+      <div class="footer">
+       <div class="container">
+        <div class="row">
+         <aside id="siteorigin-panels-builder-9" class="widget widget_siteorigin-panels-builder footer_widget">
+          <div id="pl-w5f5771a153d75" class="panel-layout">
+           <div id="pg-w5f5771a153d75-0" class="panel-grid panel-no-style">
+            <div id="pgc-w5f5771a153d75-0-0" class="panel-grid-cell">
+             <div id="panel-w5f5771a153d75-0-0-0" class="so-panel widget widget_sow-image panel-first-child" data-index="0">
+              <div class="so-widget-sow-image so-widget-sow-image-default-d6014b76747a">
+               <div class="sow-image-container"> 
+                <img src="https://zsecurity.org/wp-content/uploads/2018/08/logo-big-z-white-and-red-small.png" width="163" height="40" sizes="(max-width: 163px) 100vw, 163px" alt class="so-widget-image">
+               </div>
+              </div>
+             </div>
+             <div id="panel-w5f5771a153d75-0-0-1" class="so-panel widget widget_text" data-index="1">
+              <div class="textwidget">
+               <p>“Everything related to ethical hacking</p>
+               <p>&amp; cyber security in one place.”</p>
+              </div>
+             </div>
+             <div id="panel-w5f5771a153d75-0-0-2" class="so-panel widget widget_social panel-last-child" data-index="2">
+              <div class="panel-widget-style panel-widget-style-for-w5f5771a153d75-0-0-2">
+               <div class="thim-widget-social template-base">
+                <div class="thim-social">
+                 <ul class="social_link"> 
+                  <li><a rel="noreferrer" class="facebook hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.facebook.com/ZSecurity-1453250781458287/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                  <li><a rel="noreferrer" class="twitter hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://twitter.com/_zSecurity_" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                  <li><a rel="noreferrer" class="linkedin hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.linkedin.com/company/zsecurity-org/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a rel="noreferrer" class="instagram hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.instagram.com/zsecurity_org/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                  <li><a rel="noreferrer" class="youtube hasTooltip" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://youtube.com/c/zSecurity" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                 </ul>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div id="pgc-w5f5771a153d75-0-1" class="panel-grid-cell">
+             <div id="panel-w5f5771a153d75-0-1-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="3">
+              <h3 class="widget-title">Quick Links</h3>
+              <div class="menu-primary-menu-container">
+               <ul id="menu-primary-menu" class="menu">
+                <li id="menu-item-42789" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-42789 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Home</a></li> 
+                <li id="menu-item-42785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42785 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/about-us/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">About Us</a></li> 
+                <li id="menu-item-166" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-166 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/hacking-and-security/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Hacking &amp; Security</a></li> 
+                <li id="menu-item-64472" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-64472 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/download-custom-kali/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Download Custom Kali</a></li> 
+                <li id="menu-item-42787" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42787 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/contact/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Contact</a></li> 
+                <li id="menu-item-42786" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42786 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/faq/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">FAQ</a></li>
+               </ul>
+              </div>
+             </div>
+            </div>
+            <div id="pgc-w5f5771a153d75-0-2" class="panel-grid-cell">
+             <div id="panel-w5f5771a153d75-0-2-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="4">
+              <h3 class="widget-title">Services</h3>
+              <div class="menu-services-container">
+               <ul id="menu-services" class="menu">
+                <li id="menu-item-50106" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50106 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/pentesting/" class="tc-menu-inner">Penetration Testing</a></li> 
+                <li id="menu-item-50109" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50109 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/consulting/" class="tc-menu-inner">Consulting</a></li> 
+                <li id="menu-item-50107" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50107 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://zsecurity.com/codereview/" class="tc-menu-inner">Code Review</a></li> 
+                <li id="menu-item-47876" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-47876 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/one-on-one-training/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">One on one training</a></li> 
+                <li id="menu-item-42363" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42363 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/vpn/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">VPN</a></li> 
+                <li id="menu-item-46284" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46284 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/vip-membership/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner"><span class="tc-icon fa fa-black-tie"></span>VIP Membership</a></li>
+               </ul>
+              </div>
+             </div>
+            </div>
+            <div id="pgc-w5f5771a153d75-0-3" class="panel-grid-cell">
+             <div id="panel-w5f5771a153d75-0-3-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="5">
+              <h3 class="widget-title">Company</h3>
+              <div class="menu-company-container">
+               <ul id="menu-company" class="menu">
+                <li id="menu-item-7778" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7778 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/about-us/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">About Us</a></li> 
+                <li id="menu-item-7779" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7779 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/contact/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Contact</a></li> 
+                <li id="menu-item-58961" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-58961 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/vulnerability-disclosure/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Vulnerability Disclosure</a></li>
+               </ul>
+              </div>
+             </div>
+            </div>
+            <div id="pgc-w5f5771a153d75-0-4" class="panel-grid-cell">
+             <div id="panel-w5f5771a153d75-0-4-0" class="so-panel widget widget_nav_menu panel-first-child panel-last-child" data-index="6">
+              <h3 class="widget-title">Support</h3>
+              <div class="menu-support-container">
+               <ul id="menu-support" class="menu">
+                <li id="menu-item-7765" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7765 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/faq?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">FAQ</a></li> 
+                <li id="menu-item-7766" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7766 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/forums/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Forums</a></li>
+               </ul>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </aside>
+        </div>
+       </div>
+      </div>
+      <div class="copyright-area">
+       <div class="container">
+        <div class="copyright-content">
+         <div class="row">
+          <div class="col-sm-6">
+           <p class="text-copyright">Copyright © 2022 Z IT SECURITY LTD t/a zSecurity. All rights reserved.</p>
+          </div>
+          <div class="col-sm-6 text-right">
+           <aside id="nav_menu-14" class="widget widget_nav_menu">
+            <div class="menu-privacy-container">
+             <ul id="menu-privacy" class="menu">
+              <li id="menu-item-7769" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7769 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/privacy?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Privacy</a></li> 
+              <li id="menu-item-55905" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-55905 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/refunds/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Refunds</a></li> 
+              <li id="menu-item-7770" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7770 tc-menu-item tc-menu-depth-0 tc-menu-align-left tc-menu-layout-default"><a href="https://zsecurity-org.translate.goog/terms?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" class="tc-menu-inner">Terms</a></li>
+             </ul>
+            </div>
+           </aside>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </footer>
+    </div>
+    <div class="footer-bottom">
+     <div class="container">
+      <aside id="siteorigin-panels-builder-10" class="widget widget_siteorigin-panels-builder footer_bottom_widget">
+       <div id="pl-w5a4539dfa0a26" class="panel-layout">
+        <div id="pg-w5a4539dfa0a26-0" class="panel-grid panel-has-style">
+         <div class="thim-bg-overlay siteorigin-panels-stretch panel-row-style panel-row-style-for-w5a4539dfa0a26-0" data-stretch-type="full">
+          <div id="pgc-w5a4539dfa0a26-0-0" class="panel-grid-cell">
+           <div id="panel-w5a4539dfa0a26-0-0-0" class="so-panel widget widget_heading panel-first-child" data-index="0">
+            <div class="panel-widget-style panel-widget-style-for-w5a4539dfa0a26-0-0-0">
+             <div class="thim-widget-heading template-base">
+              <div class="sc_heading  text-center">
+               <h3 style="text-transform: uppercase;color:#ffffff;" class="title">Contribute</h3>
+               <p class="sub-heading" style="color:#ffffff;">Share your knowledge with the world</p>
+               <span style="background-color:#ffffff" class="line"></span>
+              </div>
+             </div>
+            </div>
+           </div>
+           <div id="panel-w5a4539dfa0a26-0-0-1" class="so-panel widget widget_button panel-last-child" data-index="1">
+            <div class="thim-widget-button template-base">
+             <a class="widget-button  no-border large custom_style" href="https://zsecurity-org.translate.goog/hacking-and-security/submit-an-article/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" style="font-size: 14px;font-weight: bold;color: #ffffff;border-color: #ffffff;background-color: #e53737;" data-hover="font-size: 14px;font-weight: bold;border-color: #ffffff;background-color: #c60000;"><i class="fa fa-pencil" style="font-size: 14px;"></i> SUBMIT AN ARTICLE</a>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <a href="https://zsecurity-org.translate.goog/blackeye/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp#" id="back-to-top"> <i class="fa fa-chevron-up" aria-hidden="true"></i> </a>
+  </div>
+  <style>.mejs-button.blank-button>button {
+		background: transparent;
+		color: #ccc;
+		font-size: 1em;
+		width: auto;
+	}</style> 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script type="text/template" id="playback-buttons-template">
+								<div class="mejs-button blank-button">
+				<button type=button class=playback-rate-button data-value=0.5 title="Playback Speed 0.5x" aria-label="Playback Speed 0.5x" tabindex=0>.5x</button>
+			</div>
+						<div class="mejs-button blank-button">
+				<button type=button class="playback-rate-button mejs-active active-playback-rate" data-value=1 title="Playback Speed 1x" aria-label="Playback Speed 1x" tabindex=0>1x</button>
+			</div>
+						<div class="mejs-button blank-button">
+				<button type=button class=playback-rate-button data-value=1.5 title="Playback Speed 1.5x" aria-label="Playback Speed 1.5x" tabindex=0>1.5x</button>
+			</div>
+						<div class="mejs-button blank-button">
+				<button type=button class=playback-rate-button data-value=2 title="Playback Speed 2x" aria-label="Playback Speed 2x" tabindex=0>2x</button>
+			</div>
+						</script> 
+  <div id="thim-popup-login">
+   <div class="popup-login-wrapper">
+    <div class="thim-login-container">
+     <div class="thim-popup-inner">
+      <div class="thim-login">
+       <h4 class="title">Login with your site account</h4>
+       <form name="loginpopopform" action="https://zsecurity.org/wp-login.php" method="post">
+        <p class="login-username"> <input type="text" name="log" placeholder="Username or email" class="input required" value size="20"></p>
+        <p class="login-password"> <input type="password" name="pwd" placeholder="Password" class="input required" value size="20"></p> 
+        <a class="lost-pass-link" href="https://zsecurity-org.translate.goog/account/?action=lostpassword&amp;_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp" title="Lost Password">Lost your password?</a>
+        <p class="forgetmenot login-remember"> <label for="popupRememberme"><input name="rememberme" type="checkbox" value="forever" id="popupRememberme"> Remember Me </label></p>
+        <p class="submit login-submit"> <input type="submit" name="wp-submit" class="button button-primary button-large" value="Login"> <input type="hidden" name="redirect_to" value="https://zsecurity.org/blackeye/"> <input type="hidden" name="testcookie" value="1"> <input type="hidden" name="nonce" value="8fe3c05877"> <input type="hidden" name="eduma_login_user"></p>
+       </form>
+       <p class="link-bottom">Not a member yet? <a class="register" href="https://zsecurity-org.translate.goog/account/?action=register&amp;_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Register now</a></p>
+      </div>
+      <div class="thim-register">
+       <h4 class="title">Register a new account</h4>
+       <form class="auto_login" name="registerformpopup" action="https://zsecurity.org/wp-login.php?action=register" method="post" novalidate>
+        <input type="hidden" id="register_security" name="register_security" value="1d0e7a681f">
+        <input type="hidden" name="_wp_http_referer" value="/blackeye/">
+        <p> <input placeholder="Username" type="text" name="user_login" class="input required"></p>
+        <p> <input placeholder="Email" type="email" name="user_email" class="input required"></p>
+        <p> <input placeholder="Password" type="password" name="password" class="input required"></p>
+        <p> <input placeholder="Repeat Password" type="password" name="repeat_password" class="input required"></p>
+        <div class="inv-recaptcha-holder"></div> 
+        <label class="mj-label" for="admin_bar_front"> <input type="checkbox" name="mailjet_subscribe_ok" id="mailjet_subscribe_ok" value="1" class="checkbox">Subscribe to our newsletter</label> 
+        <input type="hidden" id="mailjet_subscribe_extra_field" name="mailjet_subscribe_extra_field" value="on"> 
+        <br>
+        <p class="submit"> <input type="submit" name="wp-submit" class="button button-primary button-large" value="Sign up"></p> 
+        <input type="hidden" name="redirect_to" value="https://zsecurity.org/blackeye/"> 
+        <input type="hidden" name="eduma_register_user">
+       </form>
+       <p class="link-bottom">Are you a member? <a class="login" href="https://zsecurity-org.translate.goog/account/?_x_tr_sl=en&amp;_x_tr_tl=fr&amp;_x_tr_hl=fr&amp;_x_tr_pto=wapp">Login now</a></p>
+       <div class="popup-message"></div>
+      </div>
+     </div>
+     <span class="close-popup"><i class="fa fa-times" aria-hidden="true"></i></span>
+     <div class="cssload-container">
+      <div class="cssload-loading">
+       <i></i>
+       <i></i>
+       <i></i>
+       <i></i>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="pum-66263" class="pum pum-overlay pum-theme-66266 pum-theme-enroll-theme popmake-overlay click_open" data-popmake="{&quot;id&quot;:66263,&quot;slug&quot;:&quot;enroll-in-course&quot;,&quot;theme_id&quot;:66266,&quot;cookies&quot;:[],&quot;triggers&quot;:[{&quot;type&quot;:&quot;click_open&quot;,&quot;settings&quot;:{&quot;cookie_name&quot;:&quot;&quot;,&quot;extra_selectors&quot;:&quot;&quot;}}],&quot;mobile_disabled&quot;:null,&quot;tablet_disabled&quot;:null,&quot;meta&quot;:{&quot;display&quot;:{&quot;stackable&quot;:false,&quot;overlay_disabled&quot;:false,&quot;scrollable_content&quot;:false,&quot;disable_reposition&quot;:false,&quot;size&quot;:&quot;medium&quot;,&quot;responsive_min_width&quot;:&quot;0%&quot;,&quot;responsive_min_width_unit&quot;:false,&quot;responsive_max_width&quot;:&quot;100%&quot;,&quot;responsive_max_width_unit&quot;:false,&quot;custom_width&quot;:&quot;640px&quot;,&quot;custom_width_unit&quot;:false,&quot;custom_height&quot;:&quot;380px&quot;,&quot;custom_height_unit&quot;:false,&quot;custom_height_auto&quot;:false,&quot;location&quot;:&quot;center&quot;,&quot;position_from_trigger&quot;:false,&quot;position_top&quot;:&quot;100&quot;,&quot;position_left&quot;:&quot;0&quot;,&quot;position_bottom&quot;:&quot;0&quot;,&quot;position_right&quot;:&quot;0&quot;,&quot;position_fixed&quot;:false,&quot;animation_type&quot;:&quot;fade&quot;,&quot;animation_speed&quot;:&quot;350&quot;,&quot;animation_origin&quot;:&quot;center top&quot;,&quot;overlay_zindex&quot;:false,&quot;zindex&quot;:&quot;1999999999&quot;},&quot;close&quot;:{&quot;text&quot;:&quot;&quot;,&quot;button_delay&quot;:&quot;0&quot;,&quot;overlay_click&quot;:false,&quot;esc_press&quot;:false,&quot;f4_press&quot;:false},&quot;click_open&quot;:[]}}" role="dialog" aria-hidden="true">
+   <div id="popmake-66263" class="pum-container popmake theme-66266 pum-responsive pum-responsive-medium responsive size-medium">
+    <div class="pum-content popmake-content" tabindex="0">
+     <div id="pg-46486-3" class="panel-grid panel-has-style">
+      <div class="panel-row-style panel-row-style-for-46486-3" style="padding-left: 7%; padding-right: 7%; border-left: 0px; border-right: 0px;">
+       <div id="pgc-46486-3-0" class="panel-grid-cell">
+        <div id="panel-46486-3-0-0" class="so-panel widget widget_sow-editor panel-first-child" data-index="7">
+         <div class="so-widget-sow-editor so-widget-sow-editor-base">
+          <div class="siteorigin-widget-tinymce textwidget">
+           <h1 style="margin-bottom: 20px; text-align: left;"><span style="color: #ffffff;"><span style="color: #ff0000;">Enroll</span> <span style="color: #111111;">in this course to access this lesson!</span></span></h1>
+           <div class="row benefits-row">
+            <div class="col-md-6">
+             <p><strong>All</strong> of our courses include:</p>
+             <p><span class="checkmark-course">✔</span> Lifetime, unlimited access to course materials &amp; training videos.</p>
+             <p><span class="checkmark-course">✔</span> Watch online or <b>download</b> lectures for offline use.</p>
+             <p><span class="checkmark-course">✔</span> Verifiable certificate of completion from zSecurity, signed by the course instructor, Zaid.</p>
+             <p><span class="checkmark-course">✔</span> Get answers from our Support Team within a maximum of 15 hours.</p>
+             <p><span class="checkmark-course">✔</span> Unlimited Updates.</p>
+            </div>
+            <div class="col-md-6">
+             <p>Get <strong>free</strong> 1 month VIP membership per course with:</p>
+             <p><span class="checkmark-course">✔</span> Live mentorship and Q&amp;A session with the course instructor, Zaid.</p>
+             <p><span class="checkmark-course">✔</span> Instant support from community members through our private discord channel.</p>
+             <p><span class="checkmark-course">✔</span> Daily updates with the latest tutorials &amp; news in the hacking world.</p>
+             <p><span class="checkmark-course">✔</span> Daily resources like CTFs, bug bounty programs, onion services and more!</p>
+             <p><span class="checkmark-course">✔</span> Access our VIP community &amp; connect with like-minded people.</p>
+             <p><span class="checkmark-course">✔</span> Discounts on other zSecurity products and services.</p>
+            </div>
+           </div>
+           <p><button id="courseEnrollPopup">Enroll</button></p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <p><script>document.getElementById("courseEnrollPopup").onclick = function(){
+	document.getElementById("courseEnrollPopup").innerHTML += " <span class=\"fa fa-spinner\"></span>";
+	var buttonSelector = document.querySelector("[class='lp-button btn-add-course-to-cart']");
+	if (!buttonSelector) {
+		window.location.replace("https://zsecurity.org/checkout/");
+	} else {
+		buttonSelector.click();
+	}
+};</script></p>
+    </div>
+    <button type="button" class="pum-close popmake-close" aria-label="Close"> CLOSE </button>
+   </div>
+  </div>
+  <div id="pum-54644" class="pum pum-overlay pum-theme-14684 pum-theme-default-theme popmake-overlay click_open" data-popmake="{&quot;id&quot;:54644,&quot;slug&quot;:&quot;kali-download-subscribe&quot;,&quot;theme_id&quot;:14684,&quot;cookies&quot;:[{&quot;event&quot;:&quot;on_popup_close&quot;,&quot;settings&quot;:{&quot;name&quot;:&quot;pum-54644&quot;,&quot;key&quot;:&quot;&quot;,&quot;session&quot;:false,&quot;time&quot;:&quot;1 month&quot;,&quot;path&quot;:&quot;1&quot;}}],&quot;triggers&quot;:[{&quot;type&quot;:&quot;click_open&quot;,&quot;settings&quot;:{&quot;extra_selectors&quot;:&quot;&quot;,&quot;cookie_name&quot;:[&quot;pum-54644&quot;],&quot;do_default&quot;:true}}],&quot;mobile_disabled&quot;:null,&quot;tablet_disabled&quot;:null,&quot;meta&quot;:{&quot;display&quot;:{&quot;stackable&quot;:false,&quot;overlay_disabled&quot;:false,&quot;scrollable_content&quot;:false,&quot;disable_reposition&quot;:false,&quot;size&quot;:&quot;medium&quot;,&quot;responsive_min_width&quot;:&quot;0%&quot;,&quot;responsive_min_width_unit&quot;:false,&quot;responsive_max_width&quot;:&quot;100%&quot;,&quot;responsive_max_width_unit&quot;:false,&quot;custom_width&quot;:&quot;640px&quot;,&quot;custom_width_unit&quot;:false,&quot;custom_height&quot;:&quot;380px&quot;,&quot;custom_height_unit&quot;:false,&quot;custom_height_auto&quot;:false,&quot;location&quot;:&quot;center top&quot;,&quot;position_from_trigger&quot;:false,&quot;position_top&quot;:&quot;100&quot;,&quot;position_left&quot;:&quot;0&quot;,&quot;position_bottom&quot;:&quot;0&quot;,&quot;position_right&quot;:&quot;0&quot;,&quot;position_fixed&quot;:false,&quot;animation_type&quot;:&quot;fade&quot;,&quot;animation_speed&quot;:&quot;350&quot;,&quot;animation_origin&quot;:&quot;center top&quot;,&quot;overlay_zindex&quot;:false,&quot;zindex&quot;:&quot;1999999999&quot;},&quot;close&quot;:{&quot;text&quot;:&quot;&quot;,&quot;button_delay&quot;:&quot;0&quot;,&quot;overlay_click&quot;:false,&quot;esc_press&quot;:false,&quot;f4_press&quot;:false},&quot;click_open&quot;:[]}}" role="dialog" aria-hidden="true">
+   <div id="popmake-54644" class="pum-container popmake theme-14684 pum-responsive pum-responsive-medium responsive size-medium">
+    <div class="pum-content popmake-content" tabindex="0">
+     <div id="pg-46486-3" class="panel-grid panel-has-style">
+      <div class="panel-row-style panel-row-style-for-46486-3" style="padding-left:7%;padding-right:7%;border-left: 0px; border-right: 0px;">
+       <div id="pgc-46486-3-0" class="panel-grid-cell">
+        <div id="panel-46486-3-0-0" class="so-panel widget widget_sow-editor panel-first-child" data-index="7">
+         <div class="so-widget-sow-editor so-widget-sow-editor-base">
+          <div class="siteorigin-widget-tinymce textwidget">
+           <h1 style="margin-bottom:20px;text-align: left;"><span style="color: #ffffff;"><span style="color: #ff0000;">Learn</span> <span style="color: #111111;">more Hacking!</span></span></h1>
+           <p style="margin-bottom:20px;text-align: left;"><span style="color: #111111;">While waiting for the download, why not follow us on media? We regularly post hacking tutorials and articles</span></p>
+          </div>
+         </div>
+        </div>
+        <div id="panel-46486-3-0-1" class="so-panel widget widget_sow-social-media-buttons panel-last-child" data-index="8">
+         <div class="panel-widget-style panel-widget-style-for-46486-3-0-1">
+          <div class="so-widget-sow-social-media-buttons so-widget-sow-social-media-buttons-wire-6f353a92d1e4">
+           <div class="social-media-button-container" style="margin-bottom: 20px;"> 
+            <a class="ow-button-hover sow-social-media-button-youtube-0 sow-social-media-button" title="zSecurity on Youtube" aria-label="zSecurity on Youtube" target="_blank" rel="noopener noreferrer" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.youtube.com/user/zaidsabeeh?sub_confirmation%3D1"><span class="sow-icon-fontawesome sow-fab" data-sow-icon=""></span></a>
+            <a class="ow-button-hover sow-social-media-button-facebook-0 sow-social-media-button" title="zSecurity on Facebook" aria-label="zSecurity on Facebook" target="_blank" rel="noopener noreferrer" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.facebook.com/ZSecurity-1453250781458287/"><span class="sow-icon-fontawesome sow-fab" data-sow-icon=""></span></a>
+            <a class="ow-button-hover sow-social-media-button-twitter-0 sow-social-media-button" title="zSecurity on Twitter" aria-label="zSecurity on Twitter" target="_blank" rel="noopener noreferrer" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://twitter.com/_zSecurity_"><span><span class="sow-icon-fontawesome sow-fab" data-sow-icon=""></span></span></a>
+            <a class="ow-button-hover sow-social-media-button-instagram-0 sow-social-media-button" title="zSecurity on Instagram" aria-label="zSecurity on Instagram" target="_blank" rel="noopener noreferrer" href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.instagram.com/zsecurity_org/"><span class="sow-icon-fontawesome sow-fab" data-sow-icon=""></span></a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div id="pgc-46486-3-1" class="panel-grid-cell">
+        <div id="panel-46486-3-1-0" class="so-panel widget widget_sow-image panel-first-child panel-last-child" data-index="9">
+         <div class="so-widget-sow-image so-widget-sow-image-default-d6014b76747a">
+          <div class="sow-image-container"> 
+           <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://www.youtube.com/user/zaidsabeeh?sub_confirmation%3D1" target="_blank" rel="noopener noreferrer"> <img src="https://zsecurity.org/wp-content/uploads/2020/02/zSecurity-Youtube.png" title="Download Custom Kali" alt class="so-widget-image"><br> </a>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <button type="button" class="pum-close popmake-close" aria-label="Close"> CLOSE </button>
+   </div>
+  </div>
+  <aside id="moove_gdpr_cookie_info_bar" class="moove-gdpr-info-bar-hidden moove-gdpr-align-center moove-gdpr-light-scheme gdpr_infobar_postion_bottom" role="note" aria-label="GDPR Cookie Banner" style="display: none;">
+   <div class="moove-gdpr-info-bar-container">
+    <div class="moove-gdpr-info-bar-content">
+     <div class="moove-gdpr-cookie-notice">
+      <p>We are using cookies to give you the best experience on our website. This includes but is not limited to:</p>
+      <ul> 
+       <li>Storing your settings and preferences.</li> 
+       <li>Remember your access information</li> 
+       <li>Track website performance and make our website more relevant to you.</li>
+      </ul>
+      <p>You can find out more about which cookies we are using or switch them off in <span role="link" tabindex="1" data-href="#moove_gdpr_cookie_modal" class="change-settings-button">settings</span>.</p>
+     </div>
+     <div class="moove-gdpr-button-holder"> 
+      <button class="mgbutton moove-gdpr-infobar-allow-all gdpr-fbo-0" aria-label="Accept All" tabindex="1" role="button">Accept All</button> 
+      <button class="mgbutton moove-gdpr-infobar-settings-btn change-settings-button gdpr-fbo-2" data-href="#moove_gdpr_cookie_modal" tabindex="2" aria-label="Settings">Settings</button>
+     </div>
+    </div>
+   </div>
+  </aside> 
+  <script data-cfasync="false">window.onload = function () {
+					var thim_preload = document.getElementById('preload')
+					if (thim_preload) {
+						setTimeout(function () {
+							var body = document.getElementById('thim-body'),
+								len = body.childNodes.length,
+								class_name = body.className.replace(/(?:^|\s)thim-body-preload(?!\S)/, '').replace(/(?:^|\s)thim-body-load-overlay(?!\S)/, '')
+
+							body.className = class_name
+							if (typeof thim_preload !== 'undefined' && thim_preload !== null) {
+								for (var i = 0; i < len; i++) {
+									if (body.childNodes[i].id !== 'undefined' && body.childNodes[i].id == 'preload') {
+										body.removeChild(body.childNodes[i])
+										break
+									}
+								}
+							}
+						}, 500)
+					} else {
+
+					}
+				}</script> 
+  <script>window.addEventListener('load', function () {
+				setTimeout(function () {
+					var $ = jQuery
+					var $carousel = $('.thim-owl-carousel-post').each(function () {
+						$(this).find('.image').css('min-height', 0)
+						$(window).trigger('resize')
+					})
+				}, 500)
+			})</script> 
+  <noscript> 
+   <img height="1" width="1" style="display:none" alt="fbpx" src="https://www.facebook.com/tr?id=638219583186540&amp;ev=PageView&amp;noscript=1"> 
+  </noscript> 
+  <script>(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();</script> 
+  <style media="all" id="siteorigin-panels-layouts-footer">/* Layout tc-megamenu-10381 */ #pgc-tc-megamenu-10381-0-0 , #pgc-tc-megamenu-10381-0-1 { width:50%;width:calc(50% - ( 0.5 * 30px ) ) } #pl-tc-megamenu-10381 .so-panel { margin-bottom:30px } #pl-tc-megamenu-10381 .so-panel:last-child { margin-bottom:0px } #pg-tc-megamenu-10381-0.panel-no-style, #pg-tc-megamenu-10381-0.panel-has-style > .panel-row-style { -webkit-align-items:flex-start;align-items:flex-start } #pgc-tc-megamenu-10381-0-0 { align-self:auto } #panel-tc-megamenu-10381-0-1-0> .panel-widget-style { background-color:#ffffff;color:#000000;padding:20px 0px 0px 0px } @media (max-width:780px){ #pg-tc-megamenu-10381-0.panel-no-style, #pg-tc-megamenu-10381-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-tc-megamenu-10381-0 > .panel-grid-cell , #pg-tc-megamenu-10381-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pgc-tc-megamenu-10381-0-0 { margin-bottom:30px } #pg-tc-megamenu-10381-0 { margin-bottom:px } #pl-tc-megamenu-10381 .panel-grid-cell { padding:0 } #pl-tc-megamenu-10381 .panel-grid .panel-grid-cell-empty { display:none } #pl-tc-megamenu-10381 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } /* Layout tc-megamenu-7813 */ #pgc-tc-megamenu-7813-0-0 , #pgc-tc-megamenu-7813-0-1 { width:50%;width:calc(50% - ( 0.5 * 30px ) ) } #pl-tc-megamenu-7813 .so-panel { margin-bottom:30px } #pl-tc-megamenu-7813 .so-panel:last-child { margin-bottom:0px } #pg-tc-megamenu-7813-0.panel-no-style, #pg-tc-megamenu-7813-0.panel-has-style > .panel-row-style { -webkit-align-items:flex-start;align-items:flex-start } @media (max-width:780px){ #pg-tc-megamenu-7813-0.panel-no-style, #pg-tc-megamenu-7813-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-tc-megamenu-7813-0 > .panel-grid-cell , #pg-tc-megamenu-7813-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pgc-tc-megamenu-7813-0-0 { margin-bottom:30px } #pg-tc-megamenu-7813-0 { margin-bottom:px } #pl-tc-megamenu-7813 .panel-grid-cell { padding:0 } #pl-tc-megamenu-7813 .panel-grid .panel-grid-cell-empty { display:none } #pl-tc-megamenu-7813 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } /* Layout tc-megamenu-29219 */ #pgc-tc-megamenu-29219-0-0 { width:100%;width:calc(100% - ( 0 * 30px ) ) } #pl-tc-megamenu-29219 .so-panel { margin-bottom:30px } #pl-tc-megamenu-29219 .so-panel:last-child { margin-bottom:0px } #pg-tc-megamenu-29219-0.panel-no-style, #pg-tc-megamenu-29219-0.panel-has-style > .panel-row-style { -webkit-align-items:flex-start;align-items:flex-start } #pgc-tc-megamenu-29219-0-0 { align-self:auto } @media (max-width:780px){ #pg-tc-megamenu-29219-0.panel-no-style, #pg-tc-megamenu-29219-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-tc-megamenu-29219-0 > .panel-grid-cell , #pg-tc-megamenu-29219-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pg-tc-megamenu-29219-0 { margin-bottom:px } #pl-tc-megamenu-29219 .panel-grid-cell { padding:0 } #pl-tc-megamenu-29219 .panel-grid .panel-grid-cell-empty { display:none } #pl-tc-megamenu-29219 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } /* Layout w5f5771a153d75 */ #pgc-w5f5771a153d75-0-0 { width:27.984%;width:calc(27.984% - ( 0.72015968063872 * 30px ) ) } #pgc-w5f5771a153d75-0-1 , #pgc-w5f5771a153d75-0-2 { width:20%;width:calc(20% - ( 0.8 * 30px ) ) } #pgc-w5f5771a153d75-0-3 , #pgc-w5f5771a153d75-0-4 { width:16.008%;width:calc(16.008% - ( 0.83992015968064 * 30px ) ) } #pl-w5f5771a153d75 .so-panel { margin-bottom:30px } #pl-w5f5771a153d75 .so-panel:last-child { margin-bottom:0px } #pg-w5f5771a153d75-0.panel-no-style, #pg-w5f5771a153d75-0.panel-has-style > .panel-row-style { -webkit-align-items:flex-start;align-items:flex-start } #panel-w5f5771a153d75-0-0-2> .panel-widget-style { color:#ffffff;padding:20px 20px 20px 20px } @media (max-width:780px){ #pg-w5f5771a153d75-0.panel-no-style, #pg-w5f5771a153d75-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-w5f5771a153d75-0 > .panel-grid-cell , #pg-w5f5771a153d75-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pgc-w5f5771a153d75-0-0 , #pgc-w5f5771a153d75-0-1 , #pgc-w5f5771a153d75-0-2 , #pgc-w5f5771a153d75-0-3 { margin-bottom:30px } #pg-w5f5771a153d75-0 { margin-bottom:px } #pl-w5f5771a153d75 .panel-grid-cell { padding:0 } #pl-w5f5771a153d75 .panel-grid .panel-grid-cell-empty { display:none } #pl-w5f5771a153d75 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } /* Layout w5a4539dfa0a26 */ #pgc-w5a4539dfa0a26-0-0 { width:100%;width:calc(100% - ( 0 * 30px ) ) } #pg-w5a4539dfa0a26-0 , #pl-w5a4539dfa0a26 .so-panel:last-child { margin-bottom:0px } #pl-w5a4539dfa0a26 .so-panel { margin-bottom:30px } #pg-w5a4539dfa0a26-0> .panel-row-style { background-color:#000000;background-image:url(https://zsecurity.org/wp-content/uploads/2017/11/44552512_l.jpg);background-position:center center;background-size:cover;padding:0px 0px 0px 0px } #pg-w5a4539dfa0a26-0.panel-no-style, #pg-w5a4539dfa0a26-0.panel-has-style > .panel-row-style { -webkit-align-items:flex-start;align-items:flex-start } #panel-w5a4539dfa0a26-0-0-0> .panel-widget-style { padding:0px 0px 0px 0px } @media (max-width:780px){ #pg-w5a4539dfa0a26-0.panel-no-style, #pg-w5a4539dfa0a26-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-w5a4539dfa0a26-0 > .panel-grid-cell , #pg-w5a4539dfa0a26-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pg-w5a4539dfa0a26-0 { margin-bottom:px } #pl-w5a4539dfa0a26 .panel-grid-cell { padding:0 } #pl-w5a4539dfa0a26 .panel-grid .panel-grid-cell-empty { display:none } #pl-w5a4539dfa0a26 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  }</style>
+  <link rel="stylesheet" href="https://zsecurity.org/wp-content/cache/minify/fe83a.css" media="all"> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/92cb7.js"></script> 
+  <script id="contact-form-7-js-extra">var wpcf7 = {"api":{"root":"https:\/\/zsecurity.org\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":0};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/b68ea.js"></script> 
+  <script id="pt-cv-content-views-script-js-extra">var PT_CV_PUBLIC = {"_prefix":"pt-cv-","page_to_show":"5","_nonce":"8126719797","is_admin":"","is_mobile":"","ajaxurl":"https:\/\/zsecurity.org\/wp-admin\/admin-ajax.php","lang":"","loading_image_src":"data:image\/gif;base64,R0lGODlhDwAPALMPAMrKygwMDJOTkz09PZWVla+vr3p6euTk5M7OzuXl5TMzMwAAAJmZmWZmZszMzP\/\/\/yH\/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgAPACwAAAAADwAPAAAEQvDJaZaZOIcV8iQK8VRX4iTYoAwZ4iCYoAjZ4RxejhVNoT+mRGP4cyF4Pp0N98sBGIBMEMOotl6YZ3S61Bmbkm4mAgAh+QQFCgAPACwAAAAADQANAAAENPDJSRSZeA418itN8QiK8BiLITVsFiyBBIoYqnoewAD4xPw9iY4XLGYSjkQR4UAUD45DLwIAIfkEBQoADwAsAAAAAA8ACQAABC\/wyVlamTi3nSdgwFNdhEJgTJoNyoB9ISYoQmdjiZPcj7EYCAeCF1gEDo4Dz2eIAAAh+QQFCgAPACwCAAAADQANAAAEM\/DJBxiYeLKdX3IJZT1FU0iIg2RNKx3OkZVnZ98ToRD4MyiDnkAh6BkNC0MvsAj0kMpHBAAh+QQFCgAPACwGAAAACQAPAAAEMDC59KpFDll73HkAA2wVY5KgiK5b0RRoI6MuzG6EQqCDMlSGheEhUAgqgUUAFRySIgAh+QQFCgAPACwCAAIADQANAAAEM\/DJKZNLND\/kkKaHc3xk+QAMYDKsiaqmZCxGVjSFFCxB1vwy2oOgIDxuucxAMTAJFAJNBAAh+QQFCgAPACwAAAYADwAJAAAEMNAs86q1yaWwwv2Ig0jUZx3OYa4XoRAfwADXoAwfo1+CIjyFRuEho60aSNYlOPxEAAAh+QQFCgAPACwAAAIADQANAAAENPA9s4y8+IUVcqaWJ4qEQozSoAzoIyhCK2NFU2SJk0hNnyEOhKR2AzAAj4Pj4GE4W0bkJQIAOw==","is_mobile_tablet":"","sf_no_post_found":"No posts found.","lf__separator":","};
+var PT_CV_PAGINATION = {"first":"\u00ab","prev":"\u2039","next":"\u203a","last":"\u00bb","goto_first":"Go to first page","goto_prev":"Go to previous page","goto_next":"Go to next page","goto_last":"Go to last page","current_page":"Current page is","goto_page":"Go to page"};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/2149b.js"></script> 
+  <script id="google-invisible-recaptcha-js-before">var renderInvisibleReCaptcha = function() {
+
+    for (var i = 0; i < document.forms.length; ++i) {
+        var form = document.forms[i];
+        var holder = form.querySelector('.inv-recaptcha-holder');
+
+        if (null === holder) continue;
+		holder.innerHTML = '';
+
+         (function(frm){
+			var cf7SubmitElm = frm.querySelector('.wpcf7-submit');
+            var holderId = grecaptcha.render(holder,{
+                'sitekey': '6LeBr48UAAAAAJWxo8NpNOAOO2j036cFS3IVmiEl', 'size': 'invisible', 'badge' : 'bottomleft',
+                'callback' : function (recaptchaToken) {
+					if((null !== cf7SubmitElm) && (typeof jQuery != 'undefined')){jQuery(frm).submit();grecaptcha.reset(holderId);return;}
+					 HTMLFormElement.prototype.submit.call(frm);
+                },
+                'expired-callback' : function(){grecaptcha.reset(holderId);}
+            });
+
+			if(null !== cf7SubmitElm && (typeof jQuery != 'undefined') ){
+				jQuery(cf7SubmitElm).off('click').on('click', function(clickEvt){
+					clickEvt.preventDefault();
+					grecaptcha.execute(holderId);
+				});
+			}
+			else
+			{
+				frm.onsubmit = function (evt){evt.preventDefault();grecaptcha.execute(holderId);};
+			}
+
+
+        })(form);
+    }
+};</script> 
+  <script async defer src="https://www.google.com/recaptcha/api.js?onload=renderInvisibleReCaptcha&amp;render=explicit&amp;hl=en-GB" id="google-invisible-recaptcha-js"></script> 
+  <script id="gdatt-attachments-js-extra">var gdbbPressAttachmentsInit = {"max_files":"1","are_you_sure":"This operation is not reversible. Are you sure?"};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/5040f.js"></script> 
+  <script id="wp_mailjet_subscribe_widget-front-script-js-extra">var mjWidget = {"ajax_url":"https:\/\/zsecurity.org\/wp-admin\/admin-ajax.php"};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/1fe7b.js"></script> 
+  <script id="popup-maker-site-js-extra">var pum_vars = {"version":"1.16.9","pm_dir_url":"https:\/\/zsecurity.org\/wp-content\/plugins\/popup-maker\/","ajaxurl":"https:\/\/zsecurity.org\/wp-admin\/admin-ajax.php","restapi":"https:\/\/zsecurity.org\/wp-json\/pum\/v1","rest_nonce":null,"default_theme":"14684","debug_mode":"","disable_tracking":"1","home_url":"\/","message_position":"top","core_sub_forms_enabled":"1","popups":[]};
+var pum_sub_vars = {"ajaxurl":"https:\/\/zsecurity.org\/wp-admin\/admin-ajax.php","message_position":"top"};
+var pum_popups = {"pum-66263":{"triggers":[{"type":"click_open","settings":{"cookie_name":"","extra_selectors":""}}],"cookies":[],"disable_on_mobile":false,"disable_on_tablet":false,"atc_promotion":null,"explain":null,"type_section":null,"theme_id":"66266","size":"medium","responsive_min_width":"0%","responsive_max_width":"100%","custom_width":"640px","custom_height_auto":false,"custom_height":"380px","scrollable_content":false,"animation_type":"fade","animation_speed":"350","animation_origin":"center top","open_sound":"none","custom_sound":"","location":"center","position_top":"100","position_bottom":"0","position_left":"0","position_right":"0","position_from_trigger":false,"position_fixed":false,"overlay_disabled":false,"stackable":false,"disable_reposition":false,"zindex":"1999999999","close_button_delay":"0","fi_promotion":null,"close_on_form_submission":false,"close_on_form_submission_delay":"0","close_on_overlay_click":false,"close_on_esc_press":false,"close_on_f4_press":false,"disable_form_reopen":false,"disable_accessibility":false,"theme_slug":"enroll-theme","id":66263,"slug":"enroll-in-course"},"pum-54644":{"triggers":[{"type":"click_open","settings":{"extra_selectors":"","cookie_name":["pum-54644"],"do_default":true}}],"cookies":[{"event":"on_popup_close","settings":{"name":"pum-54644","key":"","session":false,"time":"1 month","path":"1"}}],"disable_on_mobile":false,"disable_on_tablet":false,"atc_promotion":null,"explain":null,"type_section":null,"theme_id":"14684","size":"medium","responsive_min_width":"0%","responsive_max_width":"100%","custom_width":"640px","custom_height_auto":false,"custom_height":"380px","scrollable_content":false,"animation_type":"fade","animation_speed":"350","animation_origin":"center top","open_sound":"none","custom_sound":"","location":"center top","position_top":"100","position_bottom":"0","position_left":"0","position_right":"0","position_from_trigger":false,"position_fixed":false,"overlay_disabled":false,"stackable":false,"disable_reposition":false,"zindex":"1999999999","close_button_delay":"0","fi_promotion":null,"close_on_form_submission":false,"close_on_form_submission_delay":"0","close_on_overlay_click":false,"close_on_esc_press":false,"close_on_f4_press":false,"disable_form_reopen":false,"disable_accessibility":false,"theme_slug":"default-theme","id":54644,"slug":"kali-download-subscribe"}};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/bb196.js"></script> 
+  <script src="https://www.google.com/recaptcha/api.js?render=6LecIecUAAAAAHClXyaZMfVW_AJp_xE3CqW9e42w" id="google-recaptcha-js"></script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/31730.js"></script> 
+  <script id="wpcf7-recaptcha-js-extra">var wpcf7_recaptcha = {"sitekey":"6LecIecUAAAAAHClXyaZMfVW_AJp_xE3CqW9e42w","actions":{"homepage":"homepage","contactform":"contactform"}};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/2a6b9.js"></script> 
+  <script id="moove_gdpr_frontend-js-extra">var moove_frontend_gdpr_scripts = {"ajaxurl":"https:\/\/zsecurity.org\/wp-admin\/admin-ajax.php","post_id":"60908","plugin_dir":"https:\/\/zsecurity.org\/wp-content\/plugins\/gdpr-cookie-compliance","show_icons":"all","is_page":"","strict_init":"2","enabled_default":{"third_party":1,"advanced":0},"geo_location":"false","force_reload":"false","is_single":"1","hide_save_btn":"false","current_user":"0","cookie_expiration":"30","script_delay":"2000","close_btn_action":"1","close_cs_action":"1","gdpr_scor":"true","wp_lang":""};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/19aa0.js"></script> 
+  <script id="moove_gdpr_frontend-js-after">var gdpr_consent__strict = "true"
+var gdpr_consent__thirdparty = "true"
+var gdpr_consent__advanced = "false"
+var gdpr_consent__cookies = "strict|thirdparty"</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/97bdb.js"></script> 
+  <script id="thim-custom-script-js-extra">var thim_js_translate = {"login":"Username","password":"Password","close":"Close"};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/68f90.js"></script> 
+  <script id="wp-i18n-js-after">wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/f4186.js"></script> 
+  <script id="lodash-js-after">window.lodash = _.noConflict();</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/a9cda.js"></script> 
+  <script id="wp-api-fetch-js-after">wp.apiFetch.use( wp.apiFetch.createRootURLMiddleware( "https://zsecurity.org/wp-json/" ) );
+wp.apiFetch.nonceMiddleware = wp.apiFetch.createNonceMiddleware( "fde0f823bd" );
+wp.apiFetch.use( wp.apiFetch.nonceMiddleware );
+wp.apiFetch.use( wp.apiFetch.mediaUploadMiddleware );
+wp.apiFetch.nonceEndpoint = "https://zsecurity.org/wp-admin/admin-ajax.php?action=rest-nonce";</script> 
+  <script id="wc-settings-js-before">var wcSettings = wcSettings || JSON.parse( decodeURIComponent( '%7B%22adminUrl%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fwp-admin%5C%2F%22%2C%22countries%22%3A%7B%22AF%22%3A%22Afghanistan%22%2C%22AX%22%3A%22%5Cu00c5land%20Islands%22%2C%22AL%22%3A%22Albania%22%2C%22DZ%22%3A%22Algeria%22%2C%22AS%22%3A%22American%20Samoa%22%2C%22AD%22%3A%22Andorra%22%2C%22AO%22%3A%22Angola%22%2C%22AI%22%3A%22Anguilla%22%2C%22AQ%22%3A%22Antarctica%22%2C%22AG%22%3A%22Antigua%20and%20Barbuda%22%2C%22AR%22%3A%22Argentina%22%2C%22AM%22%3A%22Armenia%22%2C%22AW%22%3A%22Aruba%22%2C%22AU%22%3A%22Australia%22%2C%22AT%22%3A%22Austria%22%2C%22AZ%22%3A%22Azerbaijan%22%2C%22BS%22%3A%22Bahamas%22%2C%22BH%22%3A%22Bahrain%22%2C%22BD%22%3A%22Bangladesh%22%2C%22BB%22%3A%22Barbados%22%2C%22BY%22%3A%22Belarus%22%2C%22PW%22%3A%22Belau%22%2C%22BE%22%3A%22Belgium%22%2C%22BZ%22%3A%22Belize%22%2C%22BJ%22%3A%22Benin%22%2C%22BM%22%3A%22Bermuda%22%2C%22BT%22%3A%22Bhutan%22%2C%22BO%22%3A%22Bolivia%22%2C%22BQ%22%3A%22Bonaire%2C%20Saint%20Eustatius%20and%20Saba%22%2C%22BA%22%3A%22Bosnia%20and%20Herzegovina%22%2C%22BW%22%3A%22Botswana%22%2C%22BV%22%3A%22Bouvet%20Island%22%2C%22BR%22%3A%22Brazil%22%2C%22IO%22%3A%22British%20Indian%20Ocean%20Territory%22%2C%22BN%22%3A%22Brunei%22%2C%22BG%22%3A%22Bulgaria%22%2C%22BF%22%3A%22Burkina%20Faso%22%2C%22BI%22%3A%22Burundi%22%2C%22KH%22%3A%22Cambodia%22%2C%22CM%22%3A%22Cameroon%22%2C%22CA%22%3A%22Canada%22%2C%22CV%22%3A%22Cape%20Verde%22%2C%22KY%22%3A%22Cayman%20Islands%22%2C%22CF%22%3A%22Central%20African%20Republic%22%2C%22TD%22%3A%22Chad%22%2C%22CL%22%3A%22Chile%22%2C%22CN%22%3A%22China%22%2C%22CX%22%3A%22Christmas%20Island%22%2C%22CC%22%3A%22Cocos%20%28Keeling%29%20Islands%22%2C%22CO%22%3A%22Colombia%22%2C%22KM%22%3A%22Comoros%22%2C%22CG%22%3A%22Congo%20%28Brazzaville%29%22%2C%22CD%22%3A%22Congo%20%28Kinshasa%29%22%2C%22CK%22%3A%22Cook%20Islands%22%2C%22CR%22%3A%22Costa%20Rica%22%2C%22HR%22%3A%22Croatia%22%2C%22CU%22%3A%22Cuba%22%2C%22CW%22%3A%22Cura%26ccedil%3Bao%22%2C%22CY%22%3A%22Cyprus%22%2C%22CZ%22%3A%22Czech%20Republic%22%2C%22DK%22%3A%22Denmark%22%2C%22DJ%22%3A%22Djibouti%22%2C%22DM%22%3A%22Dominica%22%2C%22DO%22%3A%22Dominican%20Republic%22%2C%22EC%22%3A%22Ecuador%22%2C%22EG%22%3A%22Egypt%22%2C%22SV%22%3A%22El%20Salvador%22%2C%22GQ%22%3A%22Equatorial%20Guinea%22%2C%22ER%22%3A%22Eritrea%22%2C%22EE%22%3A%22Estonia%22%2C%22SZ%22%3A%22Eswatini%22%2C%22ET%22%3A%22Ethiopia%22%2C%22FK%22%3A%22Falkland%20Islands%22%2C%22FO%22%3A%22Faroe%20Islands%22%2C%22FJ%22%3A%22Fiji%22%2C%22FI%22%3A%22Finland%22%2C%22FR%22%3A%22France%22%2C%22GF%22%3A%22French%20Guiana%22%2C%22PF%22%3A%22French%20Polynesia%22%2C%22TF%22%3A%22French%20Southern%20Territories%22%2C%22GA%22%3A%22Gabon%22%2C%22GM%22%3A%22Gambia%22%2C%22GE%22%3A%22Georgia%22%2C%22DE%22%3A%22Germany%22%2C%22GH%22%3A%22Ghana%22%2C%22GI%22%3A%22Gibraltar%22%2C%22GR%22%3A%22Greece%22%2C%22GL%22%3A%22Greenland%22%2C%22GD%22%3A%22Grenada%22%2C%22GP%22%3A%22Guadeloupe%22%2C%22GU%22%3A%22Guam%22%2C%22GT%22%3A%22Guatemala%22%2C%22GG%22%3A%22Guernsey%22%2C%22GN%22%3A%22Guinea%22%2C%22GW%22%3A%22Guinea-Bissau%22%2C%22GY%22%3A%22Guyana%22%2C%22HT%22%3A%22Haiti%22%2C%22HM%22%3A%22Heard%20Island%20and%20McDonald%20Islands%22%2C%22HN%22%3A%22Honduras%22%2C%22HK%22%3A%22Hong%20Kong%22%2C%22HU%22%3A%22Hungary%22%2C%22IS%22%3A%22Iceland%22%2C%22IN%22%3A%22India%22%2C%22ID%22%3A%22Indonesia%22%2C%22IR%22%3A%22Iran%22%2C%22IQ%22%3A%22Iraq%22%2C%22IE%22%3A%22Ireland%22%2C%22IM%22%3A%22Isle%20of%20Man%22%2C%22IL%22%3A%22Israel%22%2C%22IT%22%3A%22Italy%22%2C%22CI%22%3A%22Ivory%20Coast%22%2C%22JM%22%3A%22Jamaica%22%2C%22JP%22%3A%22Japan%22%2C%22JE%22%3A%22Jersey%22%2C%22JO%22%3A%22Jordan%22%2C%22KZ%22%3A%22Kazakhstan%22%2C%22KE%22%3A%22Kenya%22%2C%22KI%22%3A%22Kiribati%22%2C%22KW%22%3A%22Kuwait%22%2C%22KG%22%3A%22Kyrgyzstan%22%2C%22LA%22%3A%22Laos%22%2C%22LV%22%3A%22Latvia%22%2C%22LB%22%3A%22Lebanon%22%2C%22LS%22%3A%22Lesotho%22%2C%22LR%22%3A%22Liberia%22%2C%22LY%22%3A%22Libya%22%2C%22LI%22%3A%22Liechtenstein%22%2C%22LT%22%3A%22Lithuania%22%2C%22LU%22%3A%22Luxembourg%22%2C%22MO%22%3A%22Macao%22%2C%22MG%22%3A%22Madagascar%22%2C%22MW%22%3A%22Malawi%22%2C%22MY%22%3A%22Malaysia%22%2C%22MV%22%3A%22Maldives%22%2C%22ML%22%3A%22Mali%22%2C%22MT%22%3A%22Malta%22%2C%22MH%22%3A%22Marshall%20Islands%22%2C%22MQ%22%3A%22Martinique%22%2C%22MR%22%3A%22Mauritania%22%2C%22MU%22%3A%22Mauritius%22%2C%22YT%22%3A%22Mayotte%22%2C%22MX%22%3A%22Mexico%22%2C%22FM%22%3A%22Micronesia%22%2C%22MD%22%3A%22Moldova%22%2C%22MC%22%3A%22Monaco%22%2C%22MN%22%3A%22Mongolia%22%2C%22ME%22%3A%22Montenegro%22%2C%22MS%22%3A%22Montserrat%22%2C%22MA%22%3A%22Morocco%22%2C%22MZ%22%3A%22Mozambique%22%2C%22MM%22%3A%22Myanmar%22%2C%22NA%22%3A%22Namibia%22%2C%22NR%22%3A%22Nauru%22%2C%22NP%22%3A%22Nepal%22%2C%22NL%22%3A%22Netherlands%22%2C%22NC%22%3A%22New%20Caledonia%22%2C%22NZ%22%3A%22New%20Zealand%22%2C%22NI%22%3A%22Nicaragua%22%2C%22NE%22%3A%22Niger%22%2C%22NG%22%3A%22Nigeria%22%2C%22NU%22%3A%22Niue%22%2C%22NF%22%3A%22Norfolk%20Island%22%2C%22KP%22%3A%22North%20Korea%22%2C%22MK%22%3A%22North%20Macedonia%22%2C%22MP%22%3A%22Northern%20Mariana%20Islands%22%2C%22NO%22%3A%22Norway%22%2C%22OM%22%3A%22Oman%22%2C%22PK%22%3A%22Pakistan%22%2C%22PS%22%3A%22Palestinian%20Territory%22%2C%22PA%22%3A%22Panama%22%2C%22PG%22%3A%22Papua%20New%20Guinea%22%2C%22PY%22%3A%22Paraguay%22%2C%22PE%22%3A%22Peru%22%2C%22PH%22%3A%22Philippines%22%2C%22PN%22%3A%22Pitcairn%22%2C%22PL%22%3A%22Poland%22%2C%22PT%22%3A%22Portugal%22%2C%22PR%22%3A%22Puerto%20Rico%22%2C%22QA%22%3A%22Qatar%22%2C%22RE%22%3A%22Reunion%22%2C%22RO%22%3A%22Romania%22%2C%22RU%22%3A%22Russia%22%2C%22RW%22%3A%22Rwanda%22%2C%22ST%22%3A%22S%26atilde%3Bo%20Tom%26eacute%3B%20and%20Pr%26iacute%3Bncipe%22%2C%22BL%22%3A%22Saint%20Barth%26eacute%3Blemy%22%2C%22SH%22%3A%22Saint%20Helena%22%2C%22KN%22%3A%22Saint%20Kitts%20and%20Nevis%22%2C%22LC%22%3A%22Saint%20Lucia%22%2C%22SX%22%3A%22Saint%20Martin%20%28Dutch%20part%29%22%2C%22MF%22%3A%22Saint%20Martin%20%28French%20part%29%22%2C%22PM%22%3A%22Saint%20Pierre%20and%20Miquelon%22%2C%22VC%22%3A%22Saint%20Vincent%20and%20the%20Grenadines%22%2C%22WS%22%3A%22Samoa%22%2C%22SM%22%3A%22San%20Marino%22%2C%22SA%22%3A%22Saudi%20Arabia%22%2C%22SN%22%3A%22Senegal%22%2C%22RS%22%3A%22Serbia%22%2C%22SC%22%3A%22Seychelles%22%2C%22SL%22%3A%22Sierra%20Leone%22%2C%22SG%22%3A%22Singapore%22%2C%22SK%22%3A%22Slovakia%22%2C%22SI%22%3A%22Slovenia%22%2C%22SB%22%3A%22Solomon%20Islands%22%2C%22SO%22%3A%22Somalia%22%2C%22ZA%22%3A%22South%20Africa%22%2C%22GS%22%3A%22South%20Georgia%5C%2FSandwich%20Islands%22%2C%22KR%22%3A%22South%20Korea%22%2C%22SS%22%3A%22South%20Sudan%22%2C%22ES%22%3A%22Spain%22%2C%22LK%22%3A%22Sri%20Lanka%22%2C%22SD%22%3A%22Sudan%22%2C%22SR%22%3A%22Suriname%22%2C%22SJ%22%3A%22Svalbard%20and%20Jan%20Mayen%22%2C%22SE%22%3A%22Sweden%22%2C%22CH%22%3A%22Switzerland%22%2C%22SY%22%3A%22Syria%22%2C%22TW%22%3A%22Taiwan%22%2C%22TJ%22%3A%22Tajikistan%22%2C%22TZ%22%3A%22Tanzania%22%2C%22TH%22%3A%22Thailand%22%2C%22TL%22%3A%22Timor-Leste%22%2C%22TG%22%3A%22Togo%22%2C%22TK%22%3A%22Tokelau%22%2C%22TO%22%3A%22Tonga%22%2C%22TT%22%3A%22Trinidad%20and%20Tobago%22%2C%22TN%22%3A%22Tunisia%22%2C%22TR%22%3A%22Turkey%22%2C%22TM%22%3A%22Turkmenistan%22%2C%22TC%22%3A%22Turks%20and%20Caicos%20Islands%22%2C%22TV%22%3A%22Tuvalu%22%2C%22UG%22%3A%22Uganda%22%2C%22UA%22%3A%22Ukraine%22%2C%22AE%22%3A%22United%20Arab%20Emirates%22%2C%22GB%22%3A%22United%20Kingdom%20%28UK%29%22%2C%22US%22%3A%22United%20States%20%28US%29%22%2C%22UM%22%3A%22United%20States%20%28US%29%20Minor%20Outlying%20Islands%22%2C%22UY%22%3A%22Uruguay%22%2C%22UZ%22%3A%22Uzbekistan%22%2C%22VU%22%3A%22Vanuatu%22%2C%22VA%22%3A%22Vatican%22%2C%22VE%22%3A%22Venezuela%22%2C%22VN%22%3A%22Vietnam%22%2C%22VG%22%3A%22Virgin%20Islands%20%28British%29%22%2C%22VI%22%3A%22Virgin%20Islands%20%28US%29%22%2C%22WF%22%3A%22Wallis%20and%20Futuna%22%2C%22EH%22%3A%22Western%20Sahara%22%2C%22YE%22%3A%22Yemen%22%2C%22ZM%22%3A%22Zambia%22%2C%22ZW%22%3A%22Zimbabwe%22%7D%2C%22currency%22%3A%7B%22code%22%3A%22USD%22%2C%22precision%22%3A2%2C%22symbol%22%3A%22%24%22%2C%22symbolPosition%22%3A%22left%22%2C%22decimalSeparator%22%3A%22.%22%2C%22thousandSeparator%22%3A%22%2C%22%2C%22priceFormat%22%3A%22%251%24s%252%24s%22%7D%2C%22currentUserIsAdmin%22%3Afalse%2C%22homeUrl%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2F%22%2C%22locale%22%3A%7B%22siteLocale%22%3A%22en_US%22%2C%22userLocale%22%3A%22en_US%22%2C%22weekdaysShort%22%3A%5B%22Sun%22%2C%22Mon%22%2C%22Tue%22%2C%22Wed%22%2C%22Thu%22%2C%22Fri%22%2C%22Sat%22%5D%7D%2C%22orderStatuses%22%3A%7B%22pending%22%3A%22Pending%20payment%22%2C%22processing%22%3A%22Processing%22%2C%22on-hold%22%3A%22On%20hold%22%2C%22completed%22%3A%22Completed%22%2C%22cancelled%22%3A%22Cancelled%22%2C%22refunded%22%3A%22Refunded%22%2C%22failed%22%3A%22Failed%22%7D%2C%22placeholderImgSrc%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fwp-content%5C%2Fuploads%5C%2Fwoocommerce-placeholder-300x300.png%22%2C%22productsSettings%22%3A%7B%22cartRedirectAfterAdd%22%3Atrue%7D%2C%22siteTitle%22%3A%22zSecurity%22%2C%22storePages%22%3A%7B%22myaccount%22%3A%7B%22id%22%3A1700%2C%22title%22%3A%22My%20Account%22%2C%22permalink%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fmy-account-w%5C%2F%22%7D%2C%22shop%22%3A%7B%22id%22%3A1697%2C%22title%22%3A%22Shop%22%2C%22permalink%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fshop%5C%2F%22%7D%2C%22cart%22%3A%7B%22id%22%3A1698%2C%22title%22%3A%22Cart%22%2C%22permalink%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fcart%5C%2F%22%7D%2C%22checkout%22%3A%7B%22id%22%3A1699%2C%22title%22%3A%22Checkout%22%2C%22permalink%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fcheckout%5C%2F%22%7D%2C%22privacy%22%3A%7B%22id%22%3A0%2C%22title%22%3A%22%22%2C%22permalink%22%3Afalse%7D%2C%22terms%22%3A%7B%22id%22%3A0%2C%22title%22%3A%22%22%2C%22permalink%22%3Afalse%7D%7D%2C%22wcAssetUrl%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fwp-content%5C%2Fplugins%5C%2Fwoocommerce%5C%2Fassets%5C%2F%22%2C%22wcVersion%22%3A%226.5.1%22%2C%22wpLoginUrl%22%3A%22https%3A%5C%2F%5C%2Fzsecurity.org%5C%2Fwp-login.php%22%2C%22wpVersion%22%3A%226.0.3%22%2C%22admin%22%3A%7B%22alertCount%22%3A%220%22%2C%22orderCount%22%3A24176%2C%22publishedProductCount%22%3A%2234%22%2C%22visibleTaskListIds%22%3A%5B%22extended%22%2C%22extended_two_column%22%5D%7D%7D' ) );
+				wp.apiFetch.use( wp.apiFetch.createPreloadingMiddleware( JSON.parse( decodeURIComponent( '%5B%5D' ) ) ) )</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/591c0.js"></script> 
+  <script id="wp-data-js-after">( function() {
+	var userId = 0;
+	var storageKey = "WP_DATA_USER_" + userId;
+	wp.data
+		.use( wp.data.plugins.persistence, { storageKey: storageKey } );
+	wp.data.plugins.persistence.__unstableMigrate( { storageKey: storageKey } );
+} )();</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/f15a6.js"></script> 
+  <script id="wc-blocks-middleware-js-before">var wcBlocksMiddlewareConfig = {
+				storeApiNonce: '6a8325ef02',
+				wcStoreApiNonceTimestamp: '1666113646'
+			};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/0ff0b.js"></script> 
+  <script id="siteorigin-panels-front-styles-js-extra">var panelsStyles = {"fullContainer":"body"};</script> 
+  <script src="https://zsecurity.org/wp-content/cache/minify/b5094.js"></script> 
+  <div id="moove_gdpr_cookie_modal" class="gdpr_lightbox-hide" role="complementary" aria-label="GDPR Settings Screen">
+   <div class="moove-gdpr-modal-content moove-clearfix logo-position-left moove_gdpr_modal_theme_v2"> 
+    <button class="moove-gdpr-modal-close" aria-label="Close GDPR Cookie Settings"> <span class="gdpr-sr-only">Close GDPR Cookie Settings</span> <span class="gdpr-icon moovegdpr-arrow-close"></span> </button>
+    <div class="moove-gdpr-modal-left-content">
+     <ul id="moove-gdpr-menu"> 
+      <li class="menu-item-on menu-item-privacy_overview menu-item-selected"> <button data-href="#privacy_overview" class="moove-gdpr-tab-nav" aria-label="Privacy Overview"> <span class="gdpr-svg-icon"> 
+         <svg class="icon icon-privacy-overview" viewbox="0 0 26 32"> 
+          <path d="M11.082 27.443l1.536 0.666 1.715-0.717c5.018-2.099 8.294-7.014 8.294-12.442v-5.734l-9.958-5.325-9.702 5.325v5.862c0 5.376 3.2 10.24 8.115 12.365zM4.502 10.138l8.166-4.506 8.397 4.506v4.813c0 4.838-2.893 9.19-7.347 11.034l-1.101 0.461-0.922-0.41c-4.352-1.894-7.194-6.195-7.194-10.957v-4.941zM12.029 14.259h1.536v7.347h-1.536v-7.347zM12.029 10.394h1.536v2.483h-1.536v-2.483z" fill="currentColor"></path> 
+         </svg> </span> <span class="gdpr-nav-tab-title">Privacy Overview</span> </button> </li>
+      <li class="menu-item-strict-necessary-cookies menu-item-off"> <button data-href="#strict-necessary-cookies" class="moove-gdpr-tab-nav" aria-label="Strictly Necessary Cookies"> <span class="gdpr-svg-icon"> 
+         <svg class="icon icon-strict-necessary" viewbox="0 0 26 32"> 
+          <path d="M22.685 5.478l-9.984 10.752-2.97-4.070c-0.333-0.461-0.973-0.538-1.434-0.205-0.435 0.333-0.538 0.947-0.23 1.408l3.686 5.094c0.179 0.256 0.461 0.41 0.768 0.435h0.051c0.282 0 0.538-0.102 0.742-0.307l10.854-11.699c0.358-0.435 0.333-1.075-0.102-1.434-0.384-0.384-0.998-0.358-1.382 0.026v0zM22.301 12.954c-0.563 0.102-0.922 0.64-0.794 1.203 0.128 0.614 0.179 1.229 0.179 1.843 0 5.094-4.122 9.216-9.216 9.216s-9.216-4.122-9.216-9.216 4.122-9.216 9.216-9.216c1.536 0 3.021 0.384 4.378 1.101 0.512 0.23 1.126 0 1.357-0.538 0.205-0.461 0.051-0.998-0.384-1.254-5.478-2.944-12.314-0.922-15.283 4.557s-0.922 12.314 4.557 15.258 12.314 0.922 15.258-4.557c0.896-1.638 1.357-3.482 1.357-5.35 0-0.768-0.077-1.51-0.23-2.253-0.102-0.538-0.64-0.896-1.178-0.794z" fill="currentColor"></path> 
+         </svg> </span> <span class="gdpr-nav-tab-title">Strictly Necessary Cookies</span> </button> </li>
+      <li class="menu-item-off menu-item-third_party_cookies"> <button data-href="#third_party_cookies" class="moove-gdpr-tab-nav" aria-label="3rd Party Cookies"> <span class="gdpr-svg-icon"> 
+         <svg class="icon icon-3rd-party" viewbox="0 0 26 32"> 
+          <path d="M25.367 3.231c-0.020 0-0.040 0-0.060 0.020l-4.98 1.080c-0.16 0.040-0.2 0.16-0.080 0.28l1.42 1.42-10.060 10.040 1.14 1.14 10.060-10.060 1.42 1.42c0.12 0.12 0.24 0.080 0.28-0.080l1.060-5.020c0-0.14-0.080-0.26-0.2-0.24zM1.427 6.371c-0.74 0-1.4 0.66-1.4 1.4v19.6c0 0.74 0.66 1.4 1.4 1.4h19.6c0.74 0 1.4-0.66 1.4-1.4v-14.6h-1.6v14.4h-19.2v-19.2h14.38v-1.6h-14.58z" fill="currentColor"></path> 
+         </svg> </span> <span class="gdpr-nav-tab-title">3rd Party Cookies</span> </button> </li>
+     </ul>
+    </div>
+    <div class="moove-gdpr-modal-right-content">
+     <div class="moove-gdpr-modal-title">
+      <div> 
+       <span class="tab-title">Privacy Overview</span>
+      </div>
+      <div class="moove-gdpr-company-logo-holder"> 
+       <img src="https://zsecurity.org/wp-content/uploads/2017/11/cropped-z-icon-300x300.png" alt width="300" height="300" class="img-responsive">
+      </div>
+     </div>
+     <div class="main-modal-content">
+      <div class="moove-gdpr-tab-content">
+       <div id="privacy_overview" class="moove-gdpr-tab-main">
+        <div class="moove-gdpr-tab-main-content">
+         <p>This website uses cookies so that we can provide you with the best user experience possible. Cookie information is stored in your browser and performs functions such as recognising you when you return to our website and helping our team to understand which sections of the website you find most interesting and useful.</p>
+        </div>
+       </div>
+       <div id="strict-necessary-cookies" class="moove-gdpr-tab-main"> 
+        <span class="tab-title">Strictly Necessary Cookies</span>
+        <div class="moove-gdpr-tab-main-content">
+         <p>Strictly Necessary Cookie should be enabled at all times so that we can save your preferences for cookie settings.</p>
+         <div class="moove-gdpr-status-bar gdpr-checkbox-disabled checkbox-selected">
+          <div class="gdpr-cc-form-wrap">
+           <div class="gdpr-cc-form-fieldset"> 
+            <label class="cookie-switch" for="moove_gdpr_strict_cookies"> <span class="gdpr-sr-only">Enable or Disable Cookies</span> <input type="checkbox" aria-label="Strictly Necessary Cookies" disabled checked value="check" name="moove_gdpr_strict_cookies" id="moove_gdpr_strict_cookies"> <span class="cookie-slider cookie-round" data-text-enable="Enabled" data-text-disabled="Disabled"></span> </label>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div id="third_party_cookies" class="moove-gdpr-tab-main"> 
+        <span class="tab-title">3rd Party Cookies</span>
+        <div class="moove-gdpr-tab-main-content">
+         <p>This website uses Google Analytics and Linkedin to collect anonymous information such as the number of visitors to the site, and the most popular pages.</p>
+         <p>Keeping this cookies enabled helps us to improve our website.</p>
+         <div class="moove-gdpr-status-bar">
+          <div class="gdpr-cc-form-wrap">
+           <div class="gdpr-cc-form-fieldset"> 
+            <label class="cookie-switch" for="moove_gdpr_performance_cookies"> <span class="gdpr-sr-only">Enable or Disable Cookies</span> <input type="checkbox" aria-label="3rd Party Cookies" value="check" name="moove_gdpr_performance_cookies" id="moove_gdpr_performance_cookies"> <span class="cookie-slider cookie-round" data-text-enable="Enabled" data-text-disabled="Disabled"></span> </label>
+           </div>
+          </div>
+         </div>
+         <div class="moove-gdpr-strict-secondary-warning-message" style="margin-top: 10px; display: none;">
+          <p>Please enable Strictly Necessary Cookies first so that we can save your preferences!</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="moove-gdpr-modal-footer-content">
+      <div class="moove-gdpr-button-holder"> 
+       <button class="mgbutton moove-gdpr-modal-allow-all button-visible" role="button" aria-label="Enable All">Enable All</button> 
+       <button class="mgbutton moove-gdpr-modal-reject-all button-visible" role="button" aria-label="Reject">Reject</button> 
+       <button class="mgbutton moove-gdpr-modal-save-settings button-visible" role="button" aria-label="Save Changes">Save Changes</button>
+      </div>
+      <div class="moove-gdpr-branding-cnt"> 
+       <a href="https://translate.google.com/website?sl=en&amp;tl=fr&amp;hl=fr&amp;client=webapp&amp;u=https://wordpress.org/plugins/gdpr-cookie-compliance/" target="_blank" rel="noopener noreferrer nofollow" class="moove-gdpr-branding">Powered by&nbsp; <span>GDPR Cookie Compliance</span></a>
+      </div>
+     </div>
+    </div>
+    <div class="moove-clearfix"></div>
+   </div>
+  </div>
+  <script>function gtElInit() {var lib = new google.translate.TranslateService();lib.translatePage('en', 'fr', function () {});}</script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=gtElInit&amp;hl=fr&amp;client=wt" type="text/javascript"></script>
+ </body>
+</html>
